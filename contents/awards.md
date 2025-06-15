@@ -1,13 +1,15 @@
-- National Scholarship of Graduate Student, 2024.
+- 2015年12月，被贵德县第一民族高级中学授予“优秀教师”
 
-- First-prize Scholarship of CUMT, 2024.
+- 2015年12月，被青海省海南州教育局授予“青海省优秀支教老师”
 
-- First-prize Scholarship of CUMT, 2023.
+- 2021年5月，被系统科学会议组委会授予“最佳张贴论文”一等奖
 
-- Freshman Scholarship of CUMT, 2022.
+- 2021年6月，获得“长三角科学道德和学风建设论坛征文”一等奖
 
-- Excellent Graduation Project of Jiangsu Province, 2022.
+- 2021年5月，上海理工大学，优秀博士毕业生
 
-- First-prize Enterprise Scholarship of CUMT, 2020.
+- 2021年6月，上海市，优秀博士毕业生
 
-- First-prize Scholarship of CUMT, 2019.
+- 2022年6月，上海理工大学，优秀博士学位论文
+
+- 2023年4月，入选安庆师范大学“天柱学者”奖励计划
