@@ -1,113 +1,850 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>高见主页（Home Page of Jian Gao）</title>
-<meta name="keywords" content="高见的个人主页，科研成果展示"/>
-<meta name="description" content="介绍高见的科研成果"/>
-<style type="text/css">
-body {
-	background-image: url(images/sea.jpeg);
-	background-repeat: repeat-y;
-	background-color: #FFF;
-	margin: 0;
-	padding: 20px;
-	font-family: "Microsoft YaHei", Arial, sans-serif;
-}
-body,td,th {
-	font-size: 18px;
-	color: #000;
-	font-weight: bold;
-	line-height: 1.6;
-}
-a:link {
-	color: #099;
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-	color: #066;
-}
-a:hover {
-	text-decoration: underline;
-	color: #0cc;
-}
-a:active {
-	text-decoration: none;
-}
-.container {
-	max-width: 1200px;
-	margin: 0 auto;
-	background-color: rgba(255, 255, 255, 0.9);
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
-.header-image {
-	width: 100%;
-	max-width: 800px;
-	height: auto;
-	display: block;
-	margin: 0 auto 20px;
-}
-.profile-image {
-	width: 200px;
-	height: auto;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-	margin-bottom: 20px;
-}
-.section-title {
-	background-color: #f0f8ff;
-	padding: 10px;
-	border-left: 5px solid #099;
-	margin: 20px 0 10px 0;
-	font-size: 20px;
-	font-weight: bold;
-}
-table {
-	width: 100%;
-	border-collapse: collapse;
-	margin: 20px 0;
-	background-color: #fff;
-}
-td, th {
-	border: 2px solid #ddd;
-	padding: 12px;
-	text-align: left;
-}
-tr:nth-child(even) {
-	background-color: #f9f9f9;
-}
-tr:hover {
-	background-color: #f5f5f5;
-}
-.paper-list p {
-	margin: 10px 0;
-	padding: 10px;
-	background-color: #fafafa;
-	border-left: 3px solid #099;
-}
-.error-message {
-	background-color: #ffe6e6;
-	border: 1px solid #ff9999;
-	color: #cc0000;
-	padding: 10px;
-	margin: 10px 0;
-	border-radius: 5px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高见副教授 - 非线性动力学与种群生态学研究</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3a6c;
+            --secondary: #2c5c8a;
+            --accent: #4c8cb5;
+            --light: #f0f4f8;
+            --dark: #0d1c30;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(13, 28, 48, 0.9), rgba(26, 58, 108, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a3a6c"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%232c5c8a" stroke-width="1" stroke-opacity="0.2"/></svg>');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero-title {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .section-header p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            height: 400px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+        }
+        
+        .course-body {
+            padding: 25px;
+        }
+        
+        .course-body h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .course-body ul {
+            list-style: none;
+        }
+        
+        .course-body ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+        }
+        
+        .course-body ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .course-body ul li i {
+            color: var(--accent);
+            margin-right: 10px;
+            min-width: 20px;
+        }
+        
+        /* Research Section */
+        .research-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .research-item {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .research-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .research-item h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .research-item h3 i {
+            background: var(--accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .research-item ul {
+            list-style: none;
+        }
+        
+        .research-item ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .research-item ul li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Awards Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--accent);
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 20px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            top: 32px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .project-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+        }
+        
+        .project-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .project-status {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .project-body {
+            padding: 25px;
+        }
+        
+        .project-body ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .project-body ul li {
+            padding: 8px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .project-body ul li i {
+            color: var(--accent);
+            margin-right: 10px;
+            min-width: 20px;
+            margin-top: 5px;
+        }
+        
+        .project-funding {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        /* Publications Section */
+        .publications-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-btns {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background: var(--light);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .publications-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .publication-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .publication-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .pub-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .pub-number {
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .pub-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .pub-authors {
+            color: var(--gray);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .pub-journal {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .pub-doi {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .pub-doi i {
+            margin-right: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .footer-column ul li a i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content, .research-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 30px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .project-card, .course-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .publications-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 4rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .filter-btns {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
 </head>
-
 <body>
-<div class="container">
-	<!-- 标题部分 -->
-	<h1 align="center">
-		<img src="images/高见的主页.jpeg" alt="高见主页标题" class="header-image" 
-		     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-		<div style="display:none; font-size: 36px; color: #099; margin: 20px 0;">高见主页 (Home Page of Jian Gao)</div>
-	</h1>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <h1>高见 副教授</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">个人简介</a></li>
+                    <li><a href="#courses">主讲课程</a></li>
+                    <li><a href="#research">研究方向</a></li>
+                    <li><a href="#awards">荣誉奖励</a></li>
+                    <li><a href="#projects">科研项目</a></li>
+                    <li><a href="#publications">学术论文</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>高见 <span class="hero-title">博士/副教授/硕士生导师</span></h2>
+            <p class="hero-subtitle">非线性动力学 · 斑图动力学 · 集群行为 · 复杂系统</p>
+            <p>现任安徽省皖江流域种群生态模拟与控制国际联合研究中心主任</p>
+            <div class="hero-btns">
+                <a href="#publications" class="btn btn-primary">学术论文</a>
+                <a href="#contact" class="btn btn-outline">联系我</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>个人简介</h2>
+                <p>高见副教授的基本信息和学术背景</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>高见 博士</h3>
+                    <p>高见，男，山东济宁人，副教授，硕士生导师。现任安徽省皖江流域种群生态模拟与控制国际联合研究中心主任。</p>
+                    <p><strong>教育背景：</strong>2013年本科毕业于武汉纺织大学，2017年硕士毕业于江苏师范大学，2021年博士毕业于上海理工大学。</p>
+                    <p><strong>学术成就：</strong>2021年12月破格晋升副教授。以第一或通讯作者在国内外学术期刊发表SCI论文近30篇，目前担任多个国际知名期刊审稿人。</p>
+                    <p><strong>学术服务：</strong>担任Physical Review E、Chaos、Chaos, Solitons and Fractals、Communications in Nonlinear Science and Numerical Simulation、Chemical physics、Chemical physics Letters和IEEE Access等国际期刊的审稿人。</p>
+
+
+
+                    <a href="https://slxy.aqnu.edu.cn/info/1911/80192.htm" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-orcid"></i> 单位个人主页
+                    </a>
+
+                    <a href="https://orcid.org/0000-0003-0585-3224" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-orcid"></i> ORCID 个人主页
+                    </a>
+
+
+                </div>
+                <div class="about-image">
+                    <div style="text-align: center;">
 
 	<!-- 个人照片 -->
 	<div align="center">
@@ -118,90 +855,500 @@ tr:hover {
 		</div>
 	</div>
 
-	<!-- 个人信息部分 -->
-	<div class="section-title">
-		<img src="images/个人信息.jpeg" alt="个人信息" 
-		     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
-		<span style="display:none;">个人信息</span>
-	</div>
-	
-	<table>
-		<tr>
-			<td width="150">姓名</td>
-			<td width="186">高见</td>
-			<td width="158">性别</td>
-			<td width="200">男</td>
-			<td width="150">出生年月</td>
-			<td>1990.01</td>
-		</tr>
-		<tr>
-			<td>民族</td>
-			<td>汉族</td>
-			<td>政治面貌</td>
-			<td>群众</td>
-			<td>婚姻状况</td>
-			<td>已婚</td>
-		</tr>
-		<tr>
-			<td>籍贯</td>
-			<td>山东济宁</td>
-			<td>电话</td>
-			<td>17501484802</td>
-			<td>工作单位</td>
-			<td>安庆师范大学</td>
-		</tr>
-		<tr>
-			<td>现所在地</td>
-			<td>安徽安庆</td>
-			<td>邮箱</td>
-			<td>gaojian1612@163.com</td>
-			<td>职称</td>
-			<td>副教授</td>
-		</tr>
-		<tr>
-			<td>研究兴趣</td>
-			<td colspan="5">复杂系统理论、集群行为、斑图动力学、时间序列分析</td>
-		</tr>
-	</table>
 
-	<p>高见，博士，副教授，硕士生导师。2013年本科毕业于武汉纺织大学，2017年硕士毕业于江苏师范大学，2021年博士毕业于上海理工大学。主要研究方向为复杂系统理论，集群行为，非线性动力学，时间序列分析等，在国内外学术期刊发表SCI论文10余篇，目前担任Communications in Nonlinear Science and Numerical Simulation、Chaos、Chemical physics、Chemical physics Letters和IEEE Access等国际期刊的审稿人。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<!-- 主讲课程 -->
-	<div class="section-title">
-		<img src="images/主讲课程.jpeg" alt="主讲课程" 
-		     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
-		<span style="display:none;">主讲课程</span>
-	</div>
-	<p>微分方程数值解法、非线性动力学、线性代数</p>
 
-	<!-- 获奖情况 -->
-	<div class="section-title">
-		<img src="images/获奖情况.jpeg" alt="获奖情况" 
-		     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
-		<span style="display:none;">获奖情况</span>
-	</div>
-	<p>2015年12月，被贵德县第一民族高级中学授予"优秀教师"；</p>
-	<p>2015年12月，被青海省海南州教育局授予"青海省优秀支教老师"；</p>
-	<p>2021年5月，被系统科学会议组委会授予"最佳张贴海报"一等奖；</p>
-	<p>2021年6月，获得"长三角科学道德和学风建设论坛征文"一等奖。</p>
 
-	<!-- 科研项目 -->
-	<div class="section-title">
-		<img src="images/科研项目.jpeg" alt="科研项目" 
-		     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
-		<span style="display:none;">科研项目</span>
-	</div>
-	<p>国家自然科学基金委员会, 面上项目, 21776119, 无增湿PEM燃料电池产物水动态特性的原位监测和传递机制研究, 2018-01-01 至 2021-12-31, 64万元, 在研, 参与</p>
+    <!-- Courses Section -->
+    <section id="courses" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <h2>主讲课程</h2>
+                <p>高见副教授的本科及研究生课程</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>本科课程</h3>
+                    </div>
+                    <div class="course-body">
+                        <h4>数学与计算科学</h4>
+                        <ul>
+                            <li><i class="fas fa-calculator"></i> 微分方程数值解法</li>
+                            <li><i class="fas fa-chart-line"></i> 高等数学</li>
+                            <li><i class="fas fa-vector-square"></i> 线性代数</li>
+                            <li><i class="fas fa-laptop-code"></i> 数学软件选讲</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>研究生课程</h3>
+                    </div>
+                    <div class="course-body">
+                        <h4>高级专题研究</h4>
+                        <ul>
+                            <li><i class="fas fa-project-diagram"></i> 非线性动力学</li>
+                            <li><i class="fas fa-book-reader"></i> 文献阅读</li>
+                            <li><i class="fas fa-flask"></i> 研究课题指导</li>
+                            <li><i class="fas fa-graduation-cap"></i> 研究生学术论文写作</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<!-- 主要论文 -->
-	<div class="section-title">
-		<img src="images/主要论文.jpeg" alt="主要论文" 
-		     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
-		<span style="display:none;">主要论文</span>
+    <!-- Research Section -->
+    <section id="research">
+        <div class="container">
+            <div class="section-header">
+                <h2>研究方向</h2>
+                <p>主要研究领域与学术兴趣</p>
+            </div>
+            <div class="research-content">
+                <div class="research-item">
+                    <h3><i class="fas fa-sitemap"></i> 非线性动力学</h3>
+                    <ul>
+                        <li>复杂系统的动力学行为分析</li>
+                        <li>混沌理论与应用研究</li>
+                        <li>分岔理论及稳定性分析</li>
+                        <li>时空系统中的斑图形成机制</li>
+                    </ul>
+                </div>
+                
+                <div class="research-item">
+                    <h3><i class="fas fa-project-diagram"></i> 斑图动力学</h3>
+                    <ul>
+                        <li>生物系统中的斑图形成机制</li>
+                        <li>反应扩散系统中的空间模式</li>
+                        <li>图灵斑图的理论与应用</li>
+                        <li>离散系统中的复杂模式</li>
+                    </ul>
+                </div>
+                
+                <div class="research-item">
+                    <h3><i class="fas fa-fish"></i> 集群行为</h3>
+                    <ul>
+                        <li>动物群体运动的动力学模型</li>
+                        <li>生物集群的层级结构研究</li>
+                        <li>视觉偏侧化对集群行为的影响</li>
+                        <li>群体智能与自组织行为</li>
+                    </ul>
+                </div>
+                
+                <div class="research-item">
+                    <h3><i class="fas fa-network-wired"></i> 复杂系统</h3>
+                    <ul>
+                        <li>生态系统建模与稳定性分析</li>
+                        <li>入侵物种的传播与控制策略</li>
+                        <li>温带森林生态系统动力学</li>
+                        <li>社会系统中的复杂网络研究</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <h2>荣誉与奖励</h2>
+                <p>学术表彰与教学奖励</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023年4月</div>
+                        <h3 class="timeline-title">安庆师范大学"天柱学者"奖励计划</h3>
+                        <p>入选安庆师范大学高层次人才计划，获得科研经费支持。</p>
+                    </div>
+                </div>
+                
+
+
+
+
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022年6月</div>
+                        <h3 class="timeline-title">上海理工大学优秀博士学位论文</h3>
+                        <p>博士论文在创新性、理论深度和应用价值方面获得高度评价。</p>
+                    </div>
+                </div>
+
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021年6月</div>
+                        <h3 class="timeline-title">获得“长三角科学道德和学风建设论坛征文”一等奖</h3>
+                    </div>
+                </div>
+
+
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021年6月</div>
+                        <h3 class="timeline-title">上海市优秀博士毕业生</h3>
+                        <p>因学术成就突出，被评为上海市优秀博士毕业生。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021年5月</div>
+                        <h3 class="timeline-title">系统科学会议最佳张贴论文一等奖</h3>
+                        <p>研究成果在系统科学领域获得高度认可。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2015年12月</div>
+                        <h3 class="timeline-title">青海省优秀支教老师</h3>
+                        <p>在青海省海南州贵德县支教期间表现突出。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>科研项目</h2>
+                <p>主持与参与的研究项目</p>
+            </div>
+            <div class="projects-grid">
+           
+
+
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>基于斑图动力学的温带落叶林入侵害虫空间分布及控制研究</h3>
+                        <div class="project-status">在研</div>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li><i class="fas fa-user"></i> <strong>角色：</strong> 项目主持人</li>
+                            <li><i class="fas fa-hashtag"></i> <strong>项目编号：</strong> No. 12205006</li>
+                            <li><i class="fas fa-calendar"></i> <strong>期限：</strong> 2022-2025</li>
+                            <li><i class="fas fa-university"></i> <strong>资助机构：</strong> 国家自然科学基金委员会</li>
+                        </ul>
+                        <div class="project-funding">
+                            <i class="fas fa-coins"></i> 资助金额：30万元
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>温带落叶林入侵害虫的空间分布斑图及控制研究</h3>
+                        <div class="project-status">在研</div>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li><i class="fas fa-user"></i> <strong>角色：</strong> 项目主持人</li>
+                            <li><i class="fas fa-hashtag"></i> <strong>项目编号：</strong> No. 2022AH030107</li>
+                            <li><i class="fas fa-calendar"></i> <strong>期限：</strong> 2022-2024</li>
+                            <li><i class="fas fa-university"></i> <strong>资助机构：</strong> 安徽省教育厅</li>
+                        </ul>
+                        <div class="project-funding">
+                            <i class="fas fa-coins"></i> 资助金额：50万元
+                        </div>
+                    </div>
+                </div>
+                
+ 
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>天柱学者人才项目</h3>
+                        <div class="project-status">在研</div>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li><i class="fas fa-user"></i> <strong>角色：</strong> 项目主持人</li>
+                            <li><i class="fas fa-calendar"></i> <strong>期限：</strong> 2023-2026</li>
+                            <li><i class="fas fa-university"></i> <strong>资助机构：</strong> 安庆师范大学</li>
+                        </ul>
+                        <div class="project-funding">
+                            <i class="fas fa-coins"></i> 资助金额：30万元
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+             <div class="project-card">
+                    <div class="project-header">
+                        <h3>无增湿PEM燃料电池产物水动态特性的原位监测和传递机制研究</h3>
+                        <div class="project-status">结题</div>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li><i class="fas fa-user"></i> <strong>角色：</strong> 项目参与人</li>
+                            <li><i class="fas fa-hashtag"></i> <strong>项目编号：</strong> No. 21776119</li>
+                            <li><i class="fas fa-calendar"></i> <strong>期限：</strong> 2017-2020</li>
+                            <li><i class="fas fa-university"></i> <strong>资助机构：</strong> 国家自然科学基金委员会</li>
+                        </ul>
+                        <div class="project-funding">
+                            <i class="fas fa-coins"></i> 资助金额：70万元
+                        </div>
+                    </div>
+                </div>
+
+               <div class="project-card">
+                    <div class="project-header">
+                        <h3>种群生态模拟与保护</h3>
+                        <div class="project-status">在研</div>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li><i class="fas fa-user"></i> <strong>角色：</strong> 核心参与人</li>
+                            <li><i class="fas fa-hashtag"></i> <strong>项目类型：</strong> 创新团队项目</li>
+                            <li><i class="fas fa-calendar"></i> <strong>期限：</strong> 2022-2025</li>
+                            <li><i class="fas fa-university"></i> <strong>资助机构：</strong> 安徽省教育厅</li>
+                        </ul>
+                        <div class="project-funding">
+                            <i class="fas fa-coins"></i> 资助金额：200万元
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <h2>学术论文</h2>
+                <p>代表性著作与研究成果</p>
+            </div>
+            
+
+
+<!-- 备注：代表作 -->
+            <div class="publications-header">
+                <h3>代表作 (*通讯作者)</h3>
+                <div class="filter-btns">
+                    <button class="filter-btn active">全部</button>
+                    <button class="filter-btn">第一作者</button>
+                    <button class="filter-btn">通讯作者</button>
+                </div>
+            </div>
+            
+            <div class="publications-grid">
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">1</div>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-title">Period-doubled spiral waves without line defects in oscillatory systems</div>
+                    <div class="pub-authors">Jian Gao*, Bin Xu, Chuansheng Shen</div>
+                    <div class="pub-journal">Physical Review E</div>
+                    <a href="#" class="pub-doi"><i class="fas fa-link"></i> DOI: 10.xxx/xxxxx</a>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">2</div>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-title">Structure of random Turing-like patterns in discrete-time systems is determined by the initial conditions</div>
+                    <div class="pub-authors">Huimin Zhang, Jian Gao*, Changgui Gu, Chuansheng Shen, Huijie Yang</div>
+                    <div class="pub-journal">Physical Review E 111: 014206</div>
+                    <a href="#" class="pub-doi"><i class="fas fa-link"></i> DOI: 10.1103/PhysRevE.111.014206</a>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">3</div>
+                        <span class="pub-year">2024</span>
+                    </div>
+                    <div class="pub-title">Tree structures may be the leadership structures employed by group motions exhibiting hierarchy</div>
+                    <div class="pub-authors">Jian Gao*, Changgui Gu, Chuansheng Shen, Huijie Yang</div>
+                    <div class="pub-journal">Physical Review Research 6: 043058</div>
+                    <a href="#" class="pub-doi"><i class="fas fa-link"></i> DOI: 10.1103/PhysRevResearch.6.043058</a>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">4</div>
+                        <span class="pub-year">2023</span>
+                    </div>
+                    <div class="pub-title">Composite spiral waves in discrete-time systems</div>
+                    <div class="pub-authors">Xin Wang, Jian Gao*, Changgui Gu, Daiyong Wu, Xinshuang Liu, Chuansheng Shen</div>
+                    <div class="pub-journal">Physical Review E 108: 044205</div>
+                    <a href="#" class="pub-doi"><i class="fas fa-link"></i> DOI: 10.1103/PhysRevE.108.044205</a>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">5</div>
+                        <span class="pub-year">2020</span>
+                    </div>
+                    <div class="pub-title">Excited state of spiral waves in oscillatory reaction-diffusion systems caused by a pulse</div>
+                    <div class="pub-authors">Jian Gao, Changgui Gu*, Huijie Yang, Tongfeng Weng</div>
+                    <div class="pub-journal">Physical Review E 101(4): 042219</div>
+                    <a href="#" class="pub-doi"><i class="fas fa-link"></i> DOI: 10.1103/PhysRevE.101.042219</a>
+                </div>
+            </div>
+            
+            <div class="publications-header" style="margin-top: 50px;">
+                <h3>全部论文列表 (第一作者或通讯作者)</h3>
+            </div>
+            
+<!-- 备注：论文列表 -->
+
+            <div class="publications-grid">
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">26</div>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-title">Period-doubled spiral waves without line defects in oscillatory systems</div>
+                    <div class="pub-authors">Jian Gao*, Bin Xu, Chuansheng Shen</div>
+                    <div class="pub-journal">Physical Review E</div>
+                </div>
+                
+
+
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">25</div>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-title">Complex network analysis of zebrafish locomotion based on time series and visibility graphs</div>
+                    <div class="pub-authors">Zhen Wang, Jian Gao*</div>
+                    <div class="pub-journal">Chaos 35: 063122 (2025)</div>
+                </div>
+                
+
+
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">24</div>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-title">Universality of population distribution patterns near the Neimark-Sacker bifurcation in a predator-pest model of warm temperate deciduous forests</div>
+                    <div class="pub-authors">Bin Xu, Yingshan Guo, Jian Gao*, Yongshang Long, Miao Feng, Chuansheng Shen</div>
+                    <div class="pub-journal">Communications in Nonlinear Science and Numerical Simulation  150: 108961 (2025)</div>
+                </div>
+                
+
+
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">23</div>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-title">Dynamics of zebrafish locomotion are independent of spatial size</div>
+                    <div class="pub-authors">Zhen Wang, Jian Gao*, Yongshang Long, Huaping Lv, Qun Wang</div>
+                    <div class="pub-journal">Chinese Physics B 34: 038702 (2025)</div>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">22</div>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-title">Population dynamics of biological synchronous reproduction and the effects of synchronous reproductive cycle on population dynamics</div>
+                    <div class="pub-authors">Jian Gao*, Bin Xu, Yaqi Zheng, Chuansheng Shen</div>
+                    <div class="pub-journal">Chaos, Solitons and Fractals 197: 116438 (2025)</div>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <div class="pub-number">21</div>
+                        <span class="pub-year">2025</span>
+                    </div>
+                    <div class="pub-title">Structure of random Turing-like patterns in discrete-time systems is determined by the initial conditions.</div>
+                    <div class="pub-authors">Huimin Zhang, Jian Gao*, Changgui Gu, Chuansheng Shen, Huijie Yang</div>
+                    <div class="pub-journal">Physical Review E 111: 014206 (2025)</div>
+                </div>
+                
+
+ 
+
+
+
+
+
+
+                <!-- Additional publications would follow the same pattern -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn btn-primary">查看全部论文</a>
+            </div>
+        </div>
+    </section>
+
+
 	</div>
 	
 	<div class="paper-list">
-		<p><strong>[13]</strong> Yang Liu, <strong>Jian Gao</strong>, Haiying Wang, Sherehe Semba, Changgui Gu, Huijie Yang. Families' influence on romantic relationship and its reconstruction. <em><strong>Chaos, Solitons and Fractals</strong></em> 155:111662(2022).</p>
+
+
+<p>[26] <strong>Jian Gao*</strong>, Bin Xu, Chuansheng Shen. Period-doubled spiral waves without line defects in oscillatory systems. <strong>Physical Review E</strong> xxx: xxxxxx (2025).</p>
+
+<p>[25] Zhen Wang, <strong>Jian Gao*</strong>. Complex network analysis of zebrafish locomotion based on time series and visibility graphs. <strong>Chaos</strong> xx: xxxxxx (2025).</p>
+
+<p>[24] Bin Xu, Yingshan Guo, <strong>Jian Gao*</strong>, Yongshang Long, Miao Feng, Chuansheng Shen. Universality of population distribution patterns near the Neimark-Sacker bifurcation in a predator-pest model of warm temperate deciduous forests. <strong>Communications in Nonlinear Science and Numerical Simulation</strong> xx: xxxxxx (2025).</p>
+
+<p>[23] Zhen Wang, <strong>Jian Gao*</strong>, Yongshang Long, Huaping Lv, Qun Wang. Dynamics of zebrafish locomotion are independent of spatial size. <strong>Chinese Physics B</strong> 34: 038702 (2025).</p>
+
+<p>[22] <strong>Jian Gao*</strong>, Bin Xu, Yaqi Zheng, Chuansheng Shen. Population dynamics of biological synchronous reproduction and the effects of synchronous reproductive cycle on population dynamics. <strong>Chaos, Solitons and Fractals</strong> 197: 116438 (2025).</p>
+
+<p>[21] Huimin Zhang, <strong>Jian Gao*</strong>, Changgui Gu, Chuansheng Shen, Huijie Yang. Structure of random Turing-like patterns in discrete-time systems is determined by the initial conditions. <strong>Physical Review E</strong> 111: 014206 (2025).</p>
+
+<p>[20] <strong>Jian Gao*</strong>, Changgui Gu, Chuansheng Shen, Huijie Yang. Tree structures may be the leadership structures employed by group motions exhibiting hierarchy. <strong>Physical Review Research</strong> 6: 043058 (2024).</p>
+
+[19] Huimin Zhang, <strong>Jian Gao*</strong>, Changgui Gu, Chuansheng Shen, Huijie Yang. Transition and coexistence of Turing pattern, Turing-like pattern and spiral waves in a discrete-time predator-prey model. <strong>Chaos, Solitons and Fractals</strong> 189: 115591 (2024).</p>
+
+<p>[18] Bin Xu, <strong>Jian Gao*</strong>, Chuansheng Shen. Proportional relations between the wave number and amplitude of spiral waves near Neimark-Sacker bifurcations. <strong>Europhysics Letters</strong> 147: 33001 (2024).</p>
+
+<p>[17] <strong>Jian Gao*</strong>, Changgui Gu, Yongshang Long, Xiyun Zhang, Chuansheng Shen, Huijie Yang. Collective behaviors of animal groups may stem from visual lateralization—Tending to obtain information through one eye. <strong>Chaos</strong> 34: 043147 (2024).</p>
+
+<p>[16] Huimin Zhang, <strong>Jian Gao*</strong>, Changgui Gu, Yongshang Long, Chuansheng Shen, Huijie Yang. Turing-like patterns induced by the competition between two stable states in a discrete-time predator–prey model. <strong>Chaos, Solitons and Fractals</strong> 180: 114481 (2024).</p>
+
+<p>[15] <strong>Jian Gao*</strong>, Changgui Gu, Huijie Yang, Chuansheng Shen. Effects of the hierarchical lockdown control measure on the dynamic mechanism of individuals' locomotor activities. <strong>Chaos, Solitons and Fractals</strong> 175: 113980 (2023).</p>
+
+<p>[14] Xin Wang, <strong>Jian Gao*</strong>, Changgui Gu, Daiyong Wu, Xinshuang Liu, Chuansheng Shen. Composite spiral waves in discrete-time systems. <strong>Physical Review E</strong> 108: 044205 (2023).</p>
+
+
+
+
+		<p><strong>[13]  Jian Gao*</strong>, Xin Wang, xinshuang Liu, Chuansheng Shen. Turing/Turing-like patterns: Products of random aggregation of spatial components. <em><strong>Chinese Physics B</strong></em> 32: 070503 (2023).</p>
 
 		<p><strong>[12] Jian Gao*</strong>, Xin Wang, Changgui Gu, Chuansheng Shen, Huijie Yang. <a href="https://mp.weixin.qq.com/s?__biz=MzAwNjc1NDQ2MA==&mid=2648951856&idx=1&sn=f9b46108436c1e00f6a43941a95e194f&chksm=831ff5c3b4687cd535e48220588cd50ddb530292af49a86759b0a207f4c78e60ede7fec57496&token=1741319048&lang=zh_CN#rd" target="_blank">Irregular spots on body surfaces of vertebrates induced by supercritical pitchfork bifurcations.</a> <strong><em>Chaos</em></strong> 32: 013129(2022).</p>
 
@@ -228,13 +1375,102 @@ tr:hover {
 		<p><strong>[1] Jian Gao*</strong>, Qun Wang, Huaping Lv. A new type of instability of spiral waves induced by resonance effects. <em><strong>Chemical Physics Letters</strong></em> 665: 10-13 (2016).</p>
 	</div>
 
-	<!-- 代表作 -->
-	<div class="section-title">
-		<a href="https://mp.weixin.qq.com/s?__biz=MzAwNjc1NDQ2MA==&mid=2648951872&idx=1&sn=b0e2f6829b3a6ecb9864757a6e380bdc&chksm=831ff5b3b4687ca5592fb9526e0eaa041c426fade220ac0e8f6f1097b8785a8bb3ff095c9c1e&token=1741319048&lang=zh_CN#rd" target="_blank">
-			<img src="images/代表作.jpeg" alt="代表作" 
-			     onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=color:#099;>代表作</span>';" />
-		</a>
-	</div>
-</div>
+ 
+
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>联系信息</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-envelope"></i> gaojian1612@163.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +86 166 5561 xxxx</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 安徽省安庆市集贤北路1319号</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>学术链接</h3>
+                    <ul>
+                        <li><a href="https://orcid.org/0000-0003-0585-3224" target="_blank"><i class="fab fa-orcid"></i> ORCID 主页</a></li>
+                        <li><a href="#"><i class="fas fa-graduation-cap"></i> Google Scholar</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> ResearchGate</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>研究机构</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-university"></i> 安庆师范大学</a></li>
+                        <li><a href="#"><i class="fas fa-flask"></i> 皖江流域种群生态模拟与控制国际联合研究中心</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> 复杂系统科研创新团队</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>快速导航</h3>
+                    <ul>
+                        <li><a href="#about"><i class="fas fa-user"></i> 个人简介</a></li>
+                        <li><a href="#research"><i class="fas fa-search"></i> 研究方向</a></li>
+                        <li><a href="#publications"><i class="fas fa-file-alt"></i> 学术论文</a></li>
+                        <li><a href="#projects"><i class="fas fa-tasks"></i> 科研项目</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 高见副教授 - 非线性动力学与种群生态学研究 | 复杂系统</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple filter functionality for publications
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // In a real implementation, this would filter the publications
+                // For this example, we'll just show a message
+                alert('筛选功能在实际网站中将会显示过滤后的论文列表');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Responsive adjustments
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                navMenu.style.display = 'flex';
+            } else {
+                navMenu.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

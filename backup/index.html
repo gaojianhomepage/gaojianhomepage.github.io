@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高见主页（Home Page of Jian Gao）</title>
+<meta name="keywords" content="高见的个人主页，科研成果展示"/>
+<meta name="description" content="介绍高见的科研成果"/>
+<style type="text/css">
+body {
+	background-image: url(images/sea.jpeg);
+	background-repeat: repeat-y;
+	background-color: #FFF;
+	margin: 0;
+	padding: 20px;
+	font-family: "Microsoft YaHei", Arial, sans-serif;
+}
+body,td,th {
+	font-size: 18px;
+	color: #000;
+	font-weight: bold;
+	line-height: 1.6;
+}
+a:link {
+	color: #099;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #066;
+}
+a:hover {
+	text-decoration: underline;
+	color: #0cc;
+}
+a:active {
+	text-decoration: none;
+}
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+.header-image {
+	width: 100%;
+	max-width: 800px;
+	height: auto;
+	display: block;
+	margin: 0 auto 20px;
+}
+.profile-image {
+	width: 200px;
+	height: auto;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+	margin-bottom: 20px;
+}
+.section-title {
+	background-color: #f0f8ff;
+	padding: 10px;
+	border-left: 5px solid #099;
+	margin: 20px 0 10px 0;
+	font-size: 20px;
+	font-weight: bold;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+	background-color: #fff;
+}
+td, th {
+	border: 2px solid #ddd;
+	padding: 12px;
+	text-align: left;
+}
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+tr:hover {
+	background-color: #f5f5f5;
+}
+.paper-list p {
+	margin: 10px 0;
+	padding: 10px;
+	background-color: #fafafa;
+	border-left: 3px solid #099;
+}
+.error-message {
+	background-color: #ffe6e6;
+	border: 1px solid #ff9999;
+	color: #cc0000;
+	padding: 10px;
+	margin: 10px 0;
+	border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+	<!-- 标题部分 -->
+	<h1 align="center">
+		<img src="images/高见的主页.jpeg" alt="高见主页标题" class="header-image" 
+		     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+		<div style="display:none; font-size: 36px; color: #099; margin: 20px 0;">高见主页 (Home Page of Jian Gao)</div>
+	</h1>
+
+	<!-- 个人照片 -->
+	<div align="center">
+		<img src="images/我.jpeg" alt="高见个人照片" class="profile-image" 
+		     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+		<div class="error-message" style="display:none;">
+			个人照片未找到 (images/我.jpeg)
+		</div>
+	</div>
+
+	<!-- 个人信息部分 -->
+	<div class="section-title">
+		<img src="images/个人信息.jpeg" alt="个人信息" 
+		     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+		<span style="display:none;">个人信息</span>
+	</div>
+	
+	<table>
+		<tr>
+			<td width="150">姓名</td>
+			<td width="186">高见</td>
+			<td width="158">性别</td>
+			<td width="200">男</td>
+			<td width="150">出生年月</td>
+			<td>1990.01</td>
+		</tr>
+		<tr>
+			<td>民族</td>
+			<td>汉族</td>
+			<td>政治面貌</td>
+			<td>群众</td>
+			<td>婚姻状况</td>
+			<td>已婚</td>
+		</tr>
+		<tr>
+			<td>籍贯</td>
+			<td>山东济宁</td>
+			<td>电话</td>
+			<td>17501484802</td>
+			<td>工作单位</td>
+			<td>安庆师范大学</td>
+		</tr>
+		<tr>
+			<td>现所在地</td>
+			<td>安徽安庆</td>
+			<td>邮箱</td>
+			<td>gaojian1612@163.com</td>
+			<td>职称</td>
+			<td>副教授</td>
+		</tr>
+		<tr>
+			<td>研究兴趣</td>
+			<td colspan="5">复杂系统理论、集群行为、斑图动力学、时间序列分析</td>
+		</tr>
+	</table>
+
+	<p>高见，博士，副教授，硕士生导师。2013年本科毕业于武汉纺织大学，2017年硕士毕业于江苏师范大学，2021年博士毕业于上海理工大学。主要研究方向为复杂系统理论，集群行为，非线性动力学，时间序列分析等，在国内外学术期刊发表SCI论文10余篇，目前担任Communications in Nonlinear Science and Numerical Simulation、Chaos、Chemical physics、Chemical physics Letters和IEEE Access等国际期刊的审稿人。</p>
+
+	<!-- 主讲课程 -->
+	<div class="section-title">
+		<img src="images/主讲课程.jpeg" alt="主讲课程" 
+		     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+		<span style="display:none;">主讲课程</span>
+	</div>
+	<p>微分方程数值解法、非线性动力学、线性代数</p>
+
+	<!-- 获奖情况 -->
+	<div class="section-title">
+		<img src="images/获奖情况.jpeg" alt="获奖情况" 
+		     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+		<span style="display:none;">获奖情况</span>
+	</div>
+	<p>2015年12月，被贵德县第一民族高级中学授予"优秀教师"；</p>
+	<p>2015年12月，被青海省海南州教育局授予"青海省优秀支教老师"；</p>
+	<p>2021年5月，被系统科学会议组委会授予"最佳张贴海报"一等奖；</p>
+	<p>2021年6月，获得"长三角科学道德和学风建设论坛征文"一等奖。</p>
+
+	<!-- 科研项目 -->
+	<div class="section-title">
+		<img src="images/科研项目.jpeg" alt="科研项目" 
+		     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+		<span style="display:none;">科研项目</span>
+	</div>
+	<p>国家自然科学基金委员会, 面上项目, 21776119, 无增湿PEM燃料电池产物水动态特性的原位监测和传递机制研究, 2018-01-01 至 2021-12-31, 64万元, 在研, 参与</p>
+
+	<!-- 主要论文 -->
+	<div class="section-title">
+		<img src="images/主要论文.jpeg" alt="主要论文" 
+		     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+		<span style="display:none;">主要论文</span>
+	</div>
+	
+	<div class="paper-list">
+		<p><strong>[13]</strong> Yang Liu, <strong>Jian Gao</strong>, Haiying Wang, Sherehe Semba, Changgui Gu, Huijie Yang. Families' influence on romantic relationship and its reconstruction. <em><strong>Chaos, Solitons and Fractals</strong></em> 155:111662(2022).</p>
+
+		<p><strong>[12] Jian Gao*</strong>, Xin Wang, Changgui Gu, Chuansheng Shen, Huijie Yang. <a href="https://mp.weixin.qq.com/s?__biz=MzAwNjc1NDQ2MA==&mid=2648951856&idx=1&sn=f9b46108436c1e00f6a43941a95e194f&chksm=831ff5c3b4687cd535e48220588cd50ddb530292af49a86759b0a207f4c78e60ede7fec57496&token=1741319048&lang=zh_CN#rd" target="_blank">Irregular spots on body surfaces of vertebrates induced by supercritical pitchfork bifurcations.</a> <strong><em>Chaos</em></strong> 32: 013129(2022).</p>
+
+		<p><strong>[11] Jian Gao*</strong>, Changgui Gu, Chuansheng Shen, Huijie Yang. <a href="https://mp.weixin.qq.com/s?__biz=MzAwNjc1NDQ2MA==&mid=2648951821&idx=1&sn=7ae4480d5c518950f3825f0b83f39079&chksm=831ff5feb4687ce8341f27afc7277d6e198dc9dda4f19fffe20475a6fb5601ab88615d9d6edc&token=1741319048&lang=zh_CN#rd" target="_blank">Spiral waves in population density distributions of invasive pests in warm-temperate deciduous forest ecosystems.</a> <em><strong>Europhysics Letters</strong></em> 136: 30005 (2021).</p>
+
+		<p><strong>[10] Jian Gao</strong>, Changgui Gu*, Huijie Yang. Applying a global pulse-disturbance to eliminate spiral waves in models of cardiac muscle. <strong><em>Chinese Physics B</em></strong> 30: 070501(2021).</p>
+
+		<p><strong>[9] Jian Gao</strong>, Changgui Gu*, Huijie Yang, Man Wang. <a href="https://mp.weixin.qq.com/s?__biz=MzAwNjc1NDQ2MA==&mid=2648951859&idx=3&sn=8d94e5a468aba84b2caa001bcc4f0bbf&chksm=831ff5c0b4687cd6a138c32651c65cdebba6353b2f8af4caa67251e0693ef8595315b9f13307&token=1741319048&lang=zh_CN#rd" target="_blank">A flight formation mechanism: The weight of repulsive force.</a> <em><strong>Communications in Nonlinear Science and Numerical Simulation</strong></em> 95: 105648 (2020).</p>
+
+		<p><strong>[8] Jian Gao</strong>, Changgui Gu*, Huijie Yang, Tongfeng Weng. Excited state of spiral waves in oscillatory reaction-diffusion systems caused by a pulse. <em><strong>Physical Review E</strong></em> 101(4): 042219 (2020).</p>
+
+		<p><strong>[7] Jian Gao</strong>, Changgui Gu*, Huijie Yang, Tongfeng Weng. A type of bi-stable spiral wave in a single-period oscillatory medium. <strong><em>Communications in Nonlinear Science and Numerical Simulation</em></strong> 85: 105233 (2020).</p>
+
+		<p><strong>[6] Jian Gao</strong>, Changgui Gu*, Huijie Yang, Tongfeng Weng. Prediction of spatial distribution of invasive alien pests in two-dimensional systems based on a discrete time model. <strong><em>Ecological Engineering</em></strong> 143(15): 105673 (2020).</p>
+
+		<p><strong>[5] Jian Gao</strong>, Changgui Gu*, Huijie Yang. Spiral waves with interfacial oscillatory chemical reactions emerge in a model of reaction-diffusion systems. <em><strong>Chemical Physics</strong></em> 528: 110507 (2020).</p>
+
+		<p><strong>[4] Jian Gao</strong>, Changgui Gu*, Huijie Yang, Tongfeng Weng. Size of a steady disturbance source affects the frequency of a target wave. <em><strong>AIP Advances</strong></em> 9: 085034 (2019).</p>
+
+		<p><strong>[3] Jian Gao</strong>, Changgui Gu*. Super multi-armed and segmented spiral pattern in a reaction-diffusion model. <strong><em>IEEE Access</em></strong> PP(99):1-1 (2019).</p>
+
+		<p><strong>[2] Jian Gao</strong>, Qun Wang*, Huaping Lv. Super-spiral structures of bi-stable spiral waves and a new instability of spiral waves. <em><strong>Chemical Physics Letters</strong></em> 685: 205-209 (2017).</p>
+
+		<p><strong>[1] Jian Gao*</strong>, Qun Wang, Huaping Lv. A new type of instability of spiral waves induced by resonance effects. <em><strong>Chemical Physics Letters</strong></em> 665: 10-13 (2016).</p>
+	</div>
+
+	<!-- 代表作 -->
+	<div class="section-title">
+		<a href="https://mp.weixin.qq.com/s?__biz=MzAwNjc1NDQ2MA==&mid=2648951872&idx=1&sn=b0e2f6829b3a6ecb9864757a6e380bdc&chksm=831ff5b3b4687ca5592fb9526e0eaa041c426fade220ac0e8f6f1097b8785a8bb3ff095c9c1e&token=1741319048&lang=zh_CN#rd" target="_blank">
+			<img src="images/代表作.jpeg" alt="代表作" 
+			     onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=color:#099;>代表作</span>';" />
+		</a>
+	</div>
+</div>
+</body>
+</html>
