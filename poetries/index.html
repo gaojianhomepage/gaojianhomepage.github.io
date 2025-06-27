@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翔天诗词集 - 心路历程与禅思哲悟</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #8e2e2e;
+            --secondary-color: #d9c7a7;
+            --accent-color: #3a5f40;
+            --light-bg: #f8f4e9;
+            --dark-text: #333;
+            --light-text: #f8f4e9;
+        }
+        
+        body {
+            font-family: 'SimSun', '宋体', serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.8;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.05"><rect fill="none" stroke="%238e2e2e" stroke-width="2" x="10" y="10" width="80" height="80" rx="10"/></svg>');
+            background-size: 120px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: var(--light-text);
+            padding: 4rem 0 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M20,20 Q40,5 60,20 T100,20 Q85,40 100,60 T100,100 Q60,85 20,100 T0,100 Q5,60 0,20 T20,20" fill="none" stroke="white" stroke-width="1"/></svg>');
+            background-size: 200px;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+            letter-spacing: 6px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .timeline-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .timeline-item {
+            background: rgba(255,255,255,0.15);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* 导航样式 */
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--dark-text);
+            font-size: 1.1rem;
+            padding: 0.5rem 1.2rem;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .nav-btn::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-btn:hover::after, .nav-btn.active::after {
+            width: 100%;
+        }
+        
+        /* 简介部分 */
+        .intro-section {
+            padding: 4rem 0;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            text-align: justify;
+            line-height: 1.9;
+            padding: 0 1rem;
+        }
+        
+        .intro-content p {
+            margin-bottom: 1.5rem;
+            text-indent: 2em;
+        }
+        
+        /* 诗词展示区 */
+        .poetry-section {
+            padding: 4rem 0;
+        }
+        
+        .year-section {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .year-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        .year-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-right: 1.5rem;
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .year-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+        
+        .year-line {
+            flex-grow: 1;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-color), transparent);
+        }
+        
+        .poems-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .poem-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .poem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        
+        .poem-header {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: var(--light-text);
+            padding: 1.2rem 1.5rem;
+        }
+        
+        .poem-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+        }
+        
+        .poem-meta {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .poem-content {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 2;
+            white-space: pre-line;
+            font-family: 'KaiTi', '楷体', serif;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><rect x="10" y="10" width="80" height="80" fill="none" stroke="%23333" stroke-width="1"/></svg>');
+            background-size: 100px;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .footer-text {
+            opacity: 0.8;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .poems-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .nav-container {
+                gap: 0.8rem;
+            }
+            
+            .nav-btn {
+                font-size: 0.95rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        
+        /* 装饰元素 */
+        .decoration {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .decoration-1 {
+            top: 15%;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            border: 8px solid var(--primary-color);
+            border-radius: 50%;
+        }
+        
+        .decoration-2 {
+            bottom: 20%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            transform: rotate(45deg);
+            border: 6px solid var(--accent-color);
+        }
+        
+        .decoration-3 {
+            top: 40%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            border: 5px solid var(--primary-color);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 装饰元素 -->
+    <div class="decoration decoration-1"></div>
+    <div class="decoration decoration-2"></div>
+    <div class="decoration decoration-3"></div>
+    
+    <!-- 页头 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>翔天诗词集</h1>
+                <div class="subtitle">心路历程与禅思哲悟</div>
+                <p>从愤激青春到禅学智慧，从个人挣扎到生命思索，六十余首诗词记录心灵蜕变</p>
+                
+                <div class="timeline-info">
+                    <div class="timeline-item">
+                        <i class="fas fa-pen-fancy"></i> 创作历程：2010-2025
+                    </div>
+                    <div class="timeline-item">
+                        <i class="fas fa-book"></i> 诗词数量：60余首
+                    </div>
+                    <div class="timeline-item">
+                        <i class="fas fa-map-marker-alt"></i> 创作地点：武汉、上海、安庆等
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 导航 -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <button class="nav-btn active" data-year="all">全部诗词</button>
+                <button class="nav-btn" data-year="2010">2010年</button>
+                <button class="nav-btn" data-year="2018">2018年</button>
+                <button class="nav-btn" data-year="2019">2019年</button>
+                <button class="nav-btn" data-year="2020">2020年</button>
+                <button class="nav-btn" data-year="2021">2021年</button>
+                <button class="nav-btn" data-year="2022">2022年</button>
+                <button class="nav-btn" data-year="2023">2023年</button>
+                <button class="nav-btn" data-year="2024">2024年</button>
+                <button class="nav-btn" data-year="2025">2025年</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 简介部分 -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-content">
+                <p>纵览个人诗词创作历程，从大学二年级起至今，已逾60余首，并集结成册。诗词展现了作者思想态度的转变轨迹：由最初的愤激青春，逐渐深化为充满禅学智慧的沉静思考，同时保持对现实的批判性审视。</p>
+                <p>在这一过程中，语言的锤炼与意象的丰富使得作品愈加成熟，情感的表达也愈加细腻。每一首诗词都如同一扇窗，透视着内心的波澜与外界的纷扰，既有对自我的探索，也有对社会的反思。</p>
+                <p>随着时间的推移，创作的主题逐渐从个人的孤独与挣扎，转向对生命本质的思索与对人性的理解。诗中常常流露出对自然的敬畏与对人性的关怀，仿佛在诉说着一种超越时空的共鸣。</p>
+                <p>通过不断的写作，作者不仅在文字中找到了自我，也在诗歌的世界里构建了一种独特的哲学视角，试图以此回应生活的复杂与多元。每一行字都承载着对过往的回望与对未来的期许，成为心灵深处的一种寄托与解脱。</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 诗词展示区 -->
+    <section class="poetry-section">
+        <div class="container">
+            <!-- 2010年 -->
+            <div class="year-section" data-year="2010">
+                <div class="year-header">
+                    <h2 class="year-title">2010年</h2>
+                    <div class="year-line"></div>
+                </div>
+                
+                <div class="poems-container">
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">翔天</h3>
+                            <div class="poem-meta">
+                                <span>武汉</span>
+                                <span>2010年</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+今欲不得抗
+明翅怎可扬
+苍穹任我游
+终老再还乡
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2018年 -->
+            <div class="year-section" data-year="2018">
+                <div class="year-header">
+                    <h2 class="year-title">2018年</h2>
+                    <div class="year-line"></div>
+                </div>
+                
+                <div class="poems-container">
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2018.07.14</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+伴蝶同行可见花丛
+随蝇而行必掉污缝
+品书卷求精而非泛
+择深友需善而避横
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2018.02.05</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+目花想云夜思欢
+朝三暮四欲何圆
+司南万年心系北
+足立毫厘胸藏天
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">天眼见</h3>
+                            <div class="poem-meta">
+                                <span>济宁</span>
+                                <span>2018.03.01</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+世人肉眼视不穿
+恶魔皆坐人两肩
+心智强时魔闲坐
+心智弱时魔狂欢
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">观香论</h3>
+                            <div class="poem-meta">
+                                <span>济宁</span>
+                                <span>2018.03.03</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+闻有道人得天眼
+善男信女争敬坛
+户知万里奈我何
+吾命由我不由天
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2019年 -->
+            <div class="year-section" data-year="2019">
+                <div class="year-header">
+                    <h2 class="year-title">2019年</h2>
+                    <div class="year-line"></div>
+                </div>
+                
+                <div class="poems-container">
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2019.03.19</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+志士嗟日短
+闲人叹夜漫
+不稀光阴虚度散
+到头难
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">致故人</h3>
+                            <div class="poem-meta">
+                                <span>2019.02.17</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+转眼云烟岁月逝
+朝生暮死两万日
+路遇友人当下欢
+宴席欢尽独行至
+
+吾念昔人人念天
+世态炎凉转云烟
+默问挚友何处有
+深友故人纺院滩
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>江阴</span>
+                                <span>2019.01.25</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+身处世泥潭
+耗神心头烦
+看世间
+圣人多脱离俗世焉
+问今朝
+准圣人陨落何以堪
+有禅者言
+小隐隐于山而大隐于市焉
+多禅者狡言令志士折腰间
+俗世泥潭何以洗净凡心焉
+呵呵呵呵
+世人一生平凡而终一指间
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2019.03.04</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+简单纯粹心亦燃
+无挂无念无俗烟
+无欲无求无七色
+孤山逍遥自在仙
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>上海</span>
+                                <span>2019.03.20</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+撰文需将一夜完
+遥避诸事静心间
+断电弃网障天下
+真情妙悟铸文章
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>上海</span>
+                                <span>2019.03.21</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+春吹花落几时雨
+叶醉草泣何年秋
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2020年 -->
+            <div class="year-section" data-year="2020">
+                <div class="year-header">
+                    <h2 class="year-title">2020年</h2>
+                    <div class="year-line"></div>
+                </div>
+                
+                <div class="poems-container">
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2020.08.02</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+末嗔痴于因之果
+静心去撒果之因
+俗夫自忧付未得
+苍天古今不负搏
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>黄冈</span>
+                                <span>2020.10.02</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+我见青山不稀市
+青山见我因如是
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2021年 -->
+            <div class="year-section" data-year="2021">
+                <div class="year-header">
+                    <h2 class="year-title">2021年</h2>
+                    <div class="year-line"></div>
+                </div>
+                
+                <div class="poems-container">
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2021.02.19</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+众生一世匆匆逝
+世世三界皆如是
+染着财色名食睡
+明心见性待何世
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">雨步随谈</h3>
+                            <div class="poem-meta">
+                                <span>上海</span>
+                                <span>2021.03.11</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+湿步漫漫
+滴滴使心安
+行人伞伞
+唧唧惹心乱
+问焉 吾心何以为外转
+佛言 本心被障不得见
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>上海</span>
+                                <span>2021.0403</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+刺骨腊寒林犹碧
+拂面风暖落铺地
+冬盛春谢何以故
+皆为清明映忧啼
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2021.04.12</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+凡夫皆不知 所见非所观
+万世之执物 空花妄心欢
+妄识源六根 真心本自然
+若以真心观 山倒地虚滩
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>江阴</span>
+                                <span>2021.04.28</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+无为而治
+无执而为
+处处净土
+清净安乐
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>江阴</span>
+                                <span>2021.06.08</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+吃素积福德
+清心得般若
+初行有为法
+菩提萨婆诃
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2021.11.06</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+身处红尘心披裟
+生于淤泥净莲花
+不识清净亦如幻
+无垢无净乃菩萨
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2022年 -->
+            <div class="year-section" data-year="2022">
+                <div class="year-header">
+                    <h2 class="year-title">2022年</h2>
+                    <div class="year-line"></div>
+                </div>
+                
+                <div class="poems-container">
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">了毒</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2022..08.19</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+来时无所有
+去期空囊候
+自身本外借
+如何惹尘垢
+
+缘起性空无主翁
+天命因缘和合生
+善行正业本住相
+无垢无净法界空
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2022.11.22</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+层云浮动万相和
+气聚山河心胸阔
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2022.11.27</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+凡夫优为权利懵
+贵富王权南柯梦
+
+万般皆散唯心成
+惜知心越乾坤耕
+
+千世耕耘心亦空
+万劫拂拭枉然功
+一时顿悟真如性
+无我无人无众生
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2022.12.11</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+恶行之泽为棺商
+犬利勾结万民殃
+
+背道失德恶奸脏
+身后必有犬作墙
+
+失道久矣叹今苍
+德仁义礼亦损魍
+
+暗流涌动似静洋
+静待圣人渡妖相
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2022.12.16</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+世间至宝为德功
+愚将上宝换臭铜
+
+失德不仁华丽耸
+幻梦破碎一场空
+
+上士知宝源德崇
+知行一体身心溶
+
+水善正行功德藏
+被褐怀玉得道终
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2023年 -->
+            <div class="year-section" data-year="2023">
+                <div class="year-header">
+                    <h2 class="year-title">2023年</h2>
+                    <div class="year-line"></div>
+                </div>
+                
+                <div class="poems-container">
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">绝句</h3>
+                            <div class="poem-meta">
+                                <span>济宁</span>
+                                <span>2023.01.23</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+万物皆虚浮
+梦有觉时无
+三界无关己
+何处不净土
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">绝句</h3>
+                            <div class="poem-meta">
+                                <span>黄冈</span>
+                                <span>2023.01.25</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+千古妙文瀚如海
+百年难解海一霡
+一览太顶首楞严
+断舍世间糟粕哉
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">绝句</h3>
+                            <div class="poem-meta">
+                                <span>2023.01.28</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+因缘戏论非实法
+色即翳目妄空华
+开目虚浮合目实
+丢去分别即菩萨
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2023.03.26</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+魑魅魍魉巢权穴
+饕餮耄耋狂屠夜
+遍野横尸胆寒惊
+几人心安几人德
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2023.04.10</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+蜉蝣朝生暮断肠
+鹤寿千年忧痴翔
+寿终正寝数十载
+颠倒妄想梦一场
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2023.05.27</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+圣人西去道渐失
+时至末法道将逝
+执着之者不明道
+道尽德绝圣复至
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2023.06.22</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+心无所住
+如如不动
+犹如明镜
+物至则映
+物去则空
+无留踪迹
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2023.06.27</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+志在圣贤 长时熏修
+朝闻圣道 夕可死矣
+圣人之道 吾性自足
+唯有大患 为吾有身
+是身欲生 堕入苦海
+及吾无身 吾有何患
+欲无所来 成自在仙
+虽有此身 欲生不绝
+照其根本 幻生幻灭
+如空中华 见第二月
+无有生处 了无所得
+当知是身 亦复如是
+无有自性 和合而成
+缘聚则生 缘散则灭
+是身非我 何必执着
+寻我不得 是我虚妄
+能悟之者 渐入圣道
+既入圣道 名曰得道
+虽名得道 实无所得
+为化众生 名曰得道
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2023.08.12</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+无形之网满皮肉
+放声叫卖廉耻臭
+道德民风已不古
+罗刹海市尽道透
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2023.09.24</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+不立道德何以师 不除魑魅难立世
+腐臭腥骚香难掩 丑陋畸形粉难饰
+失德无仁至师华 世中魍魉更如沙
+终是梦中可怜人 不识因果万世罚
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2023.09.28</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+色美想淫皆虚妄
+腥肉臭骨裹皮囊
+杂乱经血见肮脏
+哀叹凡夫恋尘洋
+
+美色脏囊皆幻相
+以幻修幻进佛场
+如木浴火灰烟灭
+实相无相无不相
+
+见相非相见如来
+无相生心六贼宰
+如如不动系源头
+无来无去即如来
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">见道难</h3>
+                            <div class="poem-meta">
+                                <span>2023.11.22</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+噫吁嚱
+修行悟道难难难
+非大慧者不择攀
+五浊八苦阎浮提
+不慎便堕无间地
+
+阎浮众生颠倒睡
+起心动念皆业罪
+不识因果恶业攒
+业果招至铁围山
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2024年 -->
+            <div class="year-section" data-year="2024">
+                <div class="year-header">
+                    <h2 class="year-title">2024年</h2>
+                    <div class="year-line"></div>
+                </div>
+                
+                <div class="poems-container">
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.01.25</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+是非成败转头空
+古道青山难复荣
+名利淡泊系圣德
+无贪无痴圣道通
+
+无常天道苦众生
+生老病死圈永恒
+求而不得爱别离
+脚踏八道获重生
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">圆觉颂</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.01.30</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+水中月  镜中花
+灵明自性映万法
+梦中人  空中华
+翳目妄执难救拔
+
+道难道  名亦假
+凡夫住于譬喻答
+金刚经  是心法
+无住于相解菩萨
+
+入三昧  空无华
+以无所受受诸法
+阿弥陀  西方家
+无需接引自已达
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2024.02.05</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+花开花落随缘见
+月圆月缺不变观
+万法归一无分别
+只因深知皆如幻
+
+生老病死有何患
+六趣犹如梦中恋
+如露如电刹那灭
+如梦如幻觉时参
+
+知幻即离无方便
+离幻即觉当下圆
+大千无相无所住
+无生法忍有何难
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.02.13</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+愚人烧香为利财
+不知命由业中来
+痴众求佛邪道入
+随缘不变正途开
+
+大千外相皆虚妄
+如来无相无不相
+若见诸相非相故
+即见法界真实光
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.03.22</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+清风颤柳微涟塘
+暖阳碧水清凉苍
+闲人挪步无心境
+席坐空心自在想
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.06.28</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+一缕青丝拂碧腰
+半声露鸣破思滔
+灵气凝聚修仙人
+无根无极本飘渺
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.06.30</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+一枝孤莲立涟间
+百日愁雨噬愚滩
+千世娑婆罪众灭
+万代伊甸复乐天
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.07.14</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+空山幽径双月伴
+残经灰灯一佛见
+孤坐莲池三弥陀
+万念化一参参参
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2024.07.24</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+踏破浮生因缘路
+慧光驱散痴迷雾
+方知烦恼即菩提
+终获三界空无物
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">念死道觅</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.08.18</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+痴愚色形迷
+缘攀苦忧泣
+八苦扰尘心
+累世如故毕
+
+若念死不离
+道业自来觅
+余生不了道
+出离茫无期
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2024.08.18</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+表里不一众生体
+俗目只识美娇姬
+肤下肉血使人呕
+昙花现后老苍卌
+
+内外明澈无瑕迹
+还看药师体琉璃
+净秽不离三界相
+无垢无净本为一
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>2024.08.20</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+红尘漫漫路何寻
+岁月如梭梦几分
+山色空濛云水绕
+心随流水共浮沉
+
+晨钟暮鼓几回身
+沧海桑田话前尘
+静观世事皆如梦
+笑看风云自天真
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">泪眼常含</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.09.28</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+为何我的眼里常含泪花
+因为我对人民的爱与牵挂
+买不到健康的食品
+病痛却掏空了家
+
+为何我的眼里常含泪花
+因为农民心酸且没有办法
+房子掏空了三代
+种的菜不可卖树还不能伐
+
+为何我的眼里常含泪花
+因为人民身处水火交加
+有钱有权的人逍遥法外
+无辜的百姓却入狱离家
+
+为何我的眼里常含泪花
+因为我深爱着我的中华
+起来吧我的人民
+杀掉这遍地的罗刹
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">盛世悲唱</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.10.20</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+盛世千秋权贵享
+底层百姓苦难扛
+大唐康乾皆荣华
+唯有愁眉共此唱
+
+盛世古今何所见
+白头百姓劳苦年
+大唐之盛满金银
+布衣仍旧泪暗涟
+
+康乾之盛富贵当
+底层安得见华藏
+浮云苍狗皆难惬
+唯有辛勤伴寒窗
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">病夫盛</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.11.01</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+药铺相邻频繁立
+医院人满病愁积
+病众久卧声声怨
+何言繁荣映日曦
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.11.10</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+国富民贫房价高
+消费如潮民心焦
+贪官污吏遍吾夏
+富子留学皆远遨
+
+巨财吸金已逃离
+毒蛇猛兽有天庇
+行尸走肉无信仰
+乌烟瘴气鬼哭啼
+
+新鬼嘶鸣旧鬼嚎
+白骨露野堆山高
+鬼灯幽幽天地寒
+幽冥无主三界滔
+
+信念何在今何处
+唯剩冷漠与喧嚣
+愿携清风扫尘埃
+重归毛时共欢笑
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">自在仙记</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2024.12.19</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+方寸之地立九天
+一念之间化坤乾
+静观自心明妙理
+万般皆空自在仙
+
+丹青妙笔挥洒间
+气韵流动纳百川
+心怀坦荡天地阔
+淡泊明志乐无边
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2025年 -->
+            <div class="year-section" data-year="2025">
+                <div class="year-header">
+                    <h2 class="year-title">2025年</h2>
+                    <div class="year-line"></div>
+                </div>
+                
+                <div class="poems-container">
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2025.01.03</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+浮生八万四千梦
+千帆过尽不归踪
+月照孤舟千里影
+风随流水逐云空
+
+梦里花开几度春
+一朝醒来已是尘
+愿随流水随风去
+笑看繁华与落辰
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2025.01.09</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+岁月赠我两鬓霜
+红尘赐我一身伤
+孤舟行过千帆影
+月明点滴夜正凉
+
+往事随风两茫茫
+梦中回首泪双双
+岁月黯然埋心底
+笑叹人生风雨扬
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2025.01.21</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+人间非净土
+各有各的苦
+千般烦恼生
+何处觅那安心处
+
+浮云淡如梦
+流水去无踪
+万般皆如幻
+方知那心满神通
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">离幻偈</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2025.02.22</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+笑瞰三生因果缠
+善芽恶蕊总相关
+心如明镜千尘扫
+身似琉璃一念观
+
+云聚散  月亏圆
+轮回深处见空山
+劝君勘破浮沤影
+顿醒方知乐在天
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">独饮西楼</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2025.02.23</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+三更踏雪未眠
+孤星残月坠西山
+一人独饮危楼
+对影话凄寒
+
+今朝鸟啼梦还
+红枝碧水卧绿滩
+三人挪步池边
+双影共黯然
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2025.03.07</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+醉醒浮生若戏  短长皆入苍茫
+春去秋来本寻常  往来皆荒唐  今古尽皮囊
+
+朝霜暮雪过眼  悲欢翻作炎凉  笑他青史香三行
+人间称我妄  吾笑世人忙
+
+罢罢罢 不过荒唐一场
+                        </div>
+                    </div>
+                    
+                    <div class="poem-card">
+                        <div class="poem-header">
+                            <h3 class="poem-title">无题</h3>
+                            <div class="poem-meta">
+                                <span>安庆</span>
+                                <span>2025.03.11</span>
+                            </div>
+                        </div>
+                        <div class="poem-content">
+谪仙醉笔夸星河
+工部泪眼叹世浊
+李杜文章光万丈
+皆因妄念坠烟罗
+
+吾诗虽少字字琢
+云外鹤鸣烟雨蓑
+心无挂碍观自在
+拈花一笑天地合
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">诗词创作心路</h3>
+                <p class="footer-text">
+                    从愤激青春到禅学智慧，从个人挣扎到生命思索，
+                    六十余首诗词记录心灵蜕变历程。文字中寻得自我，
+                    诗歌里构建哲学视角，回应生活的复杂与多元。
+                </p>
+                <div class="copyright">
+                    &copy; 2025 翔天诗词集 | 创作历程: 2010-2025 | 诗词数量: 60余首
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 导航年份筛选功能
+        document.querySelectorAll('.nav-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // 更新活动按钮
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                const year = this.getAttribute('data-year');
+                
+                // 显示/隐藏年份区块
+                document.querySelectorAll('.year-section').forEach(section => {
+                    if (year === 'all' || section.getAttribute('data-year') === year) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+                
+                // 滚动到顶部
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+        });
+    </script>
+</body>
+</html>
