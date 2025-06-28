@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队介绍 | 创意无限团队</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.2rem;
+            color: #4361ee;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #212529;
+        }
+        
+        .logo span {
+            color: #4361ee;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: #495057;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav a:hover {
+            color: #4361ee;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #4361ee;
+            transition: width 0.3s;
+            border-radius: 2px;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* 团队介绍标题 */
+        .team-header {
+            text-align: center;
+            padding: 80px 0 50px;
+        }
+        
+        .team-header h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .team-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #4361ee;
+            border-radius: 2px;
+        }
+        
+        .team-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 30px auto 0;
+            color: #6c757d;
+        }
+        
+        /* 团队成员展示 */
+        .team-members {
+            padding: 30px 0 80px;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+        }
+        
+        .member-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s forwards;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.2);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .member-card:nth-child(2) { animation-delay: 0.1s; }
+        .member-card:nth-child(3) { animation-delay: 0.2s; }
+        .member-card:nth-child(4) { animation-delay: 0.3s; }
+        .member-card:nth-child(5) { animation-delay: 0.4s; }
+        
+    
+        .member-image {
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .member-card:hover .member-image img {
+            transform: scale(1.1);
+        }
+        
+        .social-links {
+            position: absolute;
+            bottom: 40px;
+            left: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            transform: translateY(70px);
+            transition: transform 0.4s;
+        }
+        
+        .member-card:hover .social-links {
+            transform: translateY(0);
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            color: #4361ee;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-links a:hover {
+            background: #4361ee;
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .member-info {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .member-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: #212529;
+        }
+        
+        .member-position {
+            color: #4361ee;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .member-bio {
+            color: #6c757d;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* 团队价值观 */
+        .team-values {
+            background: #fff;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 60px auto;
+            max-width: 1000px;
+        }
+        
+        .values-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .values-header h3 {
+            font-size: 2.2rem;
+            color: #212529;
+            margin-bottom: 15px;
+        }
+        
+        .values-header p {
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .value-card:hover {
+            background: #f8f9fa;
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: #4361ee;
+        }
+        
+        .value-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #212529;
+        }
+        
+        .value-card p {
+            color: #6c757d;
+            line-height: 1.7;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: #212529;
+            color: #f8f9fa;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #4361ee;
+        }
+        
+        .footer-section p {
+            color: #adb5bd;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #adb5bd;
+            font-size: 0.95rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .team-header h2 {
+                font-size: 2.8rem;
+            }
+            
+            .team-values {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .team-header {
+                padding: 60px 0 40px;
+            }
+            
+            .team-header h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .team-header h2 {
+                font-size: 2rem;
+            }
+            
+            .team-values {
+                padding: 30px 20px;
+            }
+            
+            .member-image {
+                height: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-users"></i>
+                    <h1>复杂系统<span>科研</span>团队</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">首页</a></li>
+                        <li><a href="#">团队成员</a></li>
+                        <li><a href="#">我们的服务</a></li>
+                        <li><a href="#">项目案例</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 团队介绍标题 -->
+    <section class="team-header">
+        <div class="container">
+            <h2>我们的卓越团队</h2>
+            <p>汇聚学术精英，融合多元思维，我们是一支充满激情与创造力的科研团队。</p>
+        </div>
+    </section>
+
+    <!-- 团队成员展示 -->
+    <section class="team-members">
+        <div class="container">
+            <div class="members-grid">
+
+                <!-- 成员1 -->
+                <div class="member-card">
+                    <div class="member-image">
+                     <a href="https://slxy.aqnu.edu.cn/info/1901/76362.htm" target="_blank">   <img src="images/shen.jpg" alt="申传胜"></a>  
+                        <div class="social-links">
+                            <a href="https://slxy.aqnu.edu.cn/info/1901/76362.htm" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <!--     <a href="#"><i class="fab fa-twitter"></i></a>-->
+                         <!--     <a href="#"><i class="fab fa-github"></i></a>   -->
+                         <!--     <a href="#"><i class="fas fa-envelope"></i></a>  -->
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>申传胜  </h3>
+                        <div class="member-position">安庆师范大学 副校长</div>
+                        <p class="member-bio">申传胜，博士，教授，博士生导师，省级教学名师，现在安庆师范大学副校长。兼任中国工业与应用数学学会复杂网络与复杂系统专委会委员，中国系统科学大会邀请组主席。主要研究领域为统计物理与复杂系统，重点关注复杂系统非平衡统计动力学的理论研究，如多尺度动力学模型、粗粒化方法、路径采样、涨落效应、成核、多稳态、引爆点和大偏差理论及其在生态系统中的应用等。</p>
+                    </div>
+                </div>
+                
+
+                <!-- 成员2 -->
+                <div class="member-card">
+                    <div class="member-image">
+<a href="https://slxy.aqnu.edu.cn/info/1901/76392.htm"  target="_blank">
+                        <img src="images/wu.jpg" alt="伍代勇">  </a>
+                        <div class="social-links">
+                            <a href="https://slxy.aqnu.edu.cn/info/1901/76392.htm"  target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <!--         <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>   -->
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>伍代勇</h3>
+                        <div class="member-position">规划处 副处长</div>
+                        <p class="member-bio">伍代勇，博士，教授，硕士生导师，省级教坛新秀，中国数学会生物数学专业委员会第九届委员会委员，安徽省非线性科学学会第四届理事会理事，安庆师范大学学报编辑委员会委员，省级微分方程教学团队负责人，主要研究领域为生物动力系统。</p>
+                    </div>
+                </div>
+                
+
+
+                <!-- 成员3 -->
+                <div class="member-card">
+                    <div class="member-image">
+<a href="https://gaojianhomepage.github.io/"  target="_blank">
+                        <img src="images/gao.jpg" alt="高见">  
+</a>
+                        <div class="social-links">
+                            <a href="https://gaojianhomepage.github.io/"  target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                         <!--   <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>   -->
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>高见</h3>
+                        <div class="member-position">安徽省皖江流域种群生态模拟与控制国际联合研究中心主任</div>
+                        <p class="member-bio">高见，博士，副教授，硕士生导师。现任安徽省皖江流域种群生态模拟与控制联合研究中心主任。主要研究领域为统计物理与复杂系统，重点关注生态系统，生物集群行为，斑图动力学，非线性动力学。</p>
+                    </div>
+                </div>
+                
+                <!-- 成员3 -->
+                <div class="member-card">
+                    <div class="member-image">
+<a href="https://slxy.aqnu.edu.cn/info/1911/88822.htm"  target="_blank">
+                        <img src="images/ye.jpg" alt="叶">
+</a> 
+                        <div class="social-links">
+                            <a href="https://slxy.aqnu.edu.cn/info/1911/88822.htm"  target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <!--        <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>   -->
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>叶陆红</h3>
+                        <div class="member-position">团队骨干</div>
+                        <p class="member-bio">叶陆红，博士，副教授，硕士生导师。主要研究领域为生物动力系统，主要开展生态种群建模、种群模型动力学分析等方面的工作。</p>
+                    </div>
+                </div>
+
+
+                <!-- 成员4 -->
+                <div class="member-card">
+                    <div class="member-image">
+<a href="https://slxy.aqnu.edu.cn/info/1921/79492.htm"  target="_blank">
+                        <img src="images/long.jpg" alt="龙永尚">
+</a>
+                        <div class="social-links">
+                            <a href="https://slxy.aqnu.edu.cn/info/1921/79492.htm"  target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                       <!--     <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>   -->
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>龙永尚</h3>
+                        <div class="member-position">团队骨干</div>
+                        <p class="member-bio">龙永尚，博士，讲师，硕士生导师。主要研究领域为复杂网络与复杂系统。</p>
+                    </div>
+                </div>
+                
+
+
+
+                <!-- 成员5 -->
+                <div class="member-card">
+                    <div class="member-image">
+ <a href="https://slxy.aqnu.edu.cn/info/1921/79472.htm"  target="_blank">
+                        <img src="images/feng.jpg" alt="冯苗">
+</a>
+                        <div class="social-links">
+                            <a href="https://slxy.aqnu.edu.cn/info/1921/79472.htm"  target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <!--             <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>   -->
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>冯苗</h3>
+                        <div class="member-position">团队骨干</div>
+                        <p class="member-bio">冯苗，博士，讲师，硕士生导师。主要研究方向：生物数学与单调动力系统。</p>
+                    </div>
+                </div>
+
+
+                <!-- 成员5 -->
+                <div class="member-card">
+                    <div class="member-image">
+        <a href="https://slxy.aqnu.edu.cn/info/1921/79382.htm"  target="_blank">
+                 <img src="images/wang.jpg" alt="王">
+</a>
+                        <div class="social-links">
+                            <a href="https://slxy.aqnu.edu.cn/info/1921/79382.htm"  target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <!--             <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>   -->
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>王小艳</h3>
+                        <div class="member-position">团队骨干</div>
+                        <p class="member-bio">王小艳，博士，讲师，硕士生导师。主要研究方向：非线性动力学和复杂系统、混沌控制、时间序列分析、复杂网络分析等。</p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队价值观 -->
+    <section class="team-values">
+        <div class="container">
+            <div class="values-header">
+                <h3>我们的核心价值观</h3>
+                <p>这些价值观指导着我们每一天的工作和决策，塑造了我们的团队文化</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>创新思维</h4>
+                    <p>我们鼓励大胆的想法和创新的解决方案，不断突破传统思维的局限。</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h4>协作共赢</h4>
+                    <p>团队合作是我们的基石，我们相信集体智慧的力量远胜个人，通过协作实现共赢。</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h4>追求卓越</h4>
+                    <p>我们永不满足于现状，始终追求更高标准，在每一个细节中体现专业和卓越。</p>
+                </div>
+                
+              <!--    <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                  <h4>客户至上</h4>
+                    <p>客户的成功就是我们的成功，我们深入理解客户需求，提供超越期待的服务体验。</p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>    一是服务长三角一体化和大别山革命老区振兴发展国家战略的重大需求。二是落实安徽省政府《一流学科专业与高水平大学建设五年行动计划》，积极发展新兴学科、交叉学科。已公布的安徽省一流学科名单中没有系统科学，也没有生态学，建设数学和生态学及相关学科交叉的系统科学是我校博士点立项单位和安徽省一流建设学科的重要突破口。三是填补安徽省“系统科学”学科空白，改善学科布局。我校系统科学学科紧紧围绕长三角和大别山区域生态系统，拓展系统科学研究的范畴和应用领域。</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>联系方式</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 北京市海淀区科技园区88号</p>
+                        <p><i class="fas fa-phone"></i> +86 10 8888 7777</p>
+                        <p><i class="fas fa-envelope"></i> contact@creative-team.com</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <p>订阅我们的通讯，获取最新动态和行业洞察：</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 创意无限团队. 保留所有权利 | 京ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
