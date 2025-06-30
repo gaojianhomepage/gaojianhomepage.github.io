@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Awesome 图标库汇总</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffb347);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: #1a2a6c;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1 i {
+            margin-right: 15px;
+            color: #ffb347;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 25px;
+            line-height: 1.6;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        #search {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        #search:focus {
+            outline: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .instructions {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .instructions h2 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .icon-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .category {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .category-header {
+            background: #1a2a6c;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .category-header i {
+            font-size: 1.8rem;
+        }
+        
+        .category-header h2 {
+            font-size: 1.5rem;
+        }
+        
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+        
+        .icon-item {
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .icon-item:hover {
+            background: #4ecdc4;
+            transform: scale(1.05);
+        }
+        
+        .icon-item:hover i, 
+        .icon-item:hover .icon-name {
+            color: white;
+        }
+        
+        .icon-item i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+            display: block;
+        }
+        
+        .icon-name {
+            font-size: 0.85rem;
+            color: #555;
+            word-break: break-all;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: white;
+            font-size: 1.1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .icon-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-icons"></i> Font Awesome 图标库</h1>
+            <p class="subtitle">本页面汇总了常用的 Font Awesome 图标，包含不同类别和样式的图标展示。您可以直接复制HTML代码在项目中使用。</p>
+            
+            <div class="search-container">
+                <input type="text" id="search" placeholder="搜索图标...">
+            </div>
+        </header>
+        
+        <div class="instructions">
+            <h2><i class="fas fa-code"></i> 使用方法</h2>
+            <p>在HTML文件中添加以下代码引入Font Awesome库：</p>
+            <div class="code-block">
+                &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"&gt;
+            </div>
+            
+            <p>然后在需要的地方使用图标：</p>
+            <div class="code-block">
+                &lt;i class="fas fa-<span id="exampleIcon">heart</span>"&gt;&lt;/i&gt;   &lt;!-- 实心图标 --&gt;<br>
+                &lt;i class="far fa-<span id="exampleIcon2">heart</span>"&gt;&lt;/i&gt;   &lt;!-- 空心图标 --&gt;<br>
+                &lt;i class="fab fa-<span id="exampleIcon3">github</span>"&gt;&lt;/i&gt;   &lt;!-- 品牌图标 --&gt;
+            </div>
+            
+            <p>点击下方图标可查看其代码</p>
+        </div>
+        
+        <div class="icon-categories">
+            <!-- 常用图标 -->
+            <div class="category">
+                <div class="category-header">
+                    <i class="fas fa-star"></i>
+                    <h2>常用图标</h2>
+                </div>
+                <div class="icons-grid">
+                    <div class="icon-item" data-icon="fa-home">
+                        <i class="fas fa-home"></i>
+                        <span class="icon-name">fa-home</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-user">
+                        <i class="fas fa-user"></i>
+                        <span class="icon-name">fa-user</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-cog">
+                        <i class="fas fa-cog"></i>
+                        <span class="icon-name">fa-cog</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-envelope">
+                        <i class="fas fa-envelope"></i>
+                        <span class="icon-name">fa-envelope</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-heart">
+                        <i class="fas fa-heart"></i>
+                        <span class="icon-name">fa-heart</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-search">
+                        <i class="fas fa-search"></i>
+                        <span class="icon-name">fa-search</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 天气与自然 -->
+            <div class="category">
+                <div class="category-header">
+                    <i class="fas fa-sun"></i>
+                    <h2>天气与自然</h2>
+                </div>
+                <div class="icons-grid">
+                    <div class="icon-item" data-icon="fa-sun">
+                        <i class="fas fa-sun"></i>
+                        <span class="icon-name">fa-sun</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-moon">
+                        <i class="fas fa-moon"></i>
+                        <span class="icon-name">fa-moon</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-cloud">
+                        <i class="fas fa-cloud"></i>
+                        <span class="icon-name">fa-cloud</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-snowflake">
+                        <i class="fas fa-snowflake"></i>
+                        <span class="icon-name">fa-snowflake</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-tree">
+                        <i class="fas fa-tree"></i>
+                        <span class="icon-name">fa-tree</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-seedling">
+                        <i class="fas fa-seedling"></i>
+                        <span class="icon-name">fa-seedling</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 社交媒体 -->
+            <div class="category">
+                <div class="category-header">
+                    <i class="fas fa-hashtag"></i>
+                    <h2>社交媒体</h2>
+                </div>
+                <div class="icons-grid">
+                    <div class="icon-item" data-icon="fa-facebook fab">
+                        <i class="fab fa-facebook"></i>
+                        <span class="icon-name">fa-facebook</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-twitter fab">
+                        <i class="fab fa-twitter"></i>
+                        <span class="icon-name">fa-twitter</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-instagram fab">
+                        <i class="fab fa-instagram"></i>
+                        <span class="icon-name">fa-instagram</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-youtube fab">
+                        <i class="fab fa-youtube"></i>
+                        <span class="icon-name">fa-youtube</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-linkedin fab">
+                        <i class="fab fa-linkedin"></i>
+                        <span class="icon-name">fa-linkedin</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-github fab">
+                        <i class="fab fa-github"></i>
+                        <span class="icon-name">fa-github</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 工具与设置 -->
+            <div class="category">
+                <div class="category-header">
+                    <i class="fas fa-tools"></i>
+                    <h2>工具与设置</h2>
+                </div>
+                <div class="icons-grid">
+                    <div class="icon-item" data-icon="fa-wrench">
+                        <i class="fas fa-wrench"></i>
+                        <span class="icon-name">fa-wrench</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-cog">
+                        <i class="fas fa-cog"></i>
+                        <span class="icon-name">fa-cog</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-sync">
+                        <i class="fas fa-sync"></i>
+                        <span class="icon-name">fa-sync</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-trash">
+                        <i class="fas fa-trash"></i>
+                        <span class="icon-name">fa-trash</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-edit">
+                        <i class="fas fa-edit"></i>
+                        <span class="icon-name">fa-edit</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-filter">
+                        <i class="fas fa-filter"></i>
+                        <span class="icon-name">fa-filter</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 文件与文档 -->
+            <div class="category">
+                <div class="category-header">
+                    <i class="fas fa-file"></i>
+                    <h2>文件与文档</h2>
+                </div>
+                <div class="icons-grid">
+                    <div class="icon-item" data-icon="fa-file">
+                        <i class="fas fa-file"></i>
+                        <span class="icon-name">fa-file</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-file-alt">
+                        <i class="fas fa-file-alt"></i>
+                        <span class="icon-name">fa-file-alt</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-file-pdf">
+                        <i class="fas fa-file-pdf"></i>
+                        <span class="icon-name">fa-file-pdf</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-save">
+                        <i class="fas fa-save"></i>
+                        <span class="icon-name">fa-save</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-folder">
+                        <i class="fas fa-folder"></i>
+                        <span class="icon-name">fa-folder</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-folder-open">
+                        <i class="fas fa-folder-open"></i>
+                        <span class="icon-name">fa-folder-open</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 方向与导航 -->
+            <div class="category">
+                <div class="category-header">
+                    <i class="fas fa-arrows-alt"></i>
+                    <h2>方向与导航</h2>
+                </div>
+                <div class="icons-grid">
+                    <div class="icon-item" data-icon="fa-arrow-left">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="icon-name">fa-arrow-left</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-arrow-right">
+                        <i class="fas fa-arrow-right"></i>
+                        <span class="icon-name">fa-arrow-right</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-arrow-up">
+                        <i class="fas fa-arrow-up"></i>
+                        <span class="icon-name">fa-arrow-up</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-arrow-down">
+                        <i class="fas fa-arrow-down"></i>
+                        <span class="icon-name">fa-arrow-down</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-chevron-right">
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="icon-name">fa-chevron-right</span>
+                    </div>
+                    <div class="icon-item" data-icon="fa-chevron-left">
+                        <i class="fas fa-chevron-left"></i>
+                        <span class="icon-name">fa-chevron-left</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p><i class="fas fa-code"></i> 使用 Font Awesome 6.4.0 | 包含超过 2000 个免费图标</p>
+            <p>点击图标可查看其代码，复制后即可在项目中使用</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 点击图标显示代码
+        const iconItems = document.querySelectorAll('.icon-item');
+        const exampleIcon = document.getElementById('exampleIcon');
+        const exampleIcon2 = document.getElementById('exampleIcon2');
+        const exampleIcon3 = document.getElementById('exampleIcon3');
+        
+        iconItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const iconData = item.getAttribute('data-icon');
+                const iconParts = iconData.split(' ');
+                
+                if (iconParts.length > 1) {
+                    // 品牌图标
+                    exampleIcon.textContent = iconParts[0];
+                    exampleIcon2.textContent = iconParts[0];
+                    exampleIcon3.textContent = iconParts[0];
+                    alert(`HTML代码：\n<i class="${iconParts[1]} ${iconParts[0]}"></i>`);
+                } else {
+                    // 普通图标
+                    exampleIcon.textContent = iconData;
+                    exampleIcon2.textContent = iconData;
+                    exampleIcon3.textContent = iconData;
+                    alert(`实心图标：\n<i class="fas ${iconData}"></i>\n\n空心图标：\n<i class="far ${iconData}"></i>`);
+                }
+            });
+        });
+        
+        // 搜索功能
+        const searchInput = document.getElementById('search');
+        
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            iconItems.forEach(item => {
+                const iconName = item.querySelector('.icon-name').textContent.toLowerCase();
+                
+                if (iconName.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // 添加动画效果
+        document.addEventListener('DOMContentLoaded', () => {
+            const categories = document.querySelectorAll('.category');
+            
+            categories.forEach((category, index) => {
+                setTimeout(() => {
+                    category.style.opacity = '0';
+                    category.style.transform = 'translateY(30px)';
+                    category.style.transition = 'all 0.6s ease-out';
+                    
+                    setTimeout(() => {
+                        category.style.opacity = '1';
+                        category.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>
