@@ -865,6 +865,47 @@
             color: var(--accent);
         }
         
+
+
+
+
+      /* Page Info Section */
+        .page-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+        
+        .info-item i {
+            color: var(--accent);
+        }
+        
+        .info-value {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+
+
+
+
+
+
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .about-content {
@@ -922,6 +963,13 @@
             .compact-section {
                 margin-bottom: 2rem;
             }
+
+            .page-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
         }
         
         @media (max-width: 576px) {
@@ -1002,6 +1050,26 @@
                 <a href="#publications" class="btn btn-primary">学术论文</a>
                 <a href="#contact" class="btn btn-outline">联系我</a>
             </div>
+
+
+
+    <div class="container">
+        <!-- Page Information -->
+        <div class="page-info">
+            <div class="info-item">
+                <i class="fas fa-calendar-plus"></i> 发布时间: <span class="info-value">2025年1月1日</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-calendar-check"></i> 修改时间: <span class="info-value">2025年7月2日</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-eye"></i> 访问次数: <span class="info-value" id="visitCount">0</span>
+            </div>
+        </div>
+
+
+
+
         </div>
     </section>
 
@@ -1727,6 +1795,61 @@
     </footer>
 
     <script>
+
+
+     // 页面访问次数统计
+        document.addEventListener('DOMContentLoaded', function() {
+            // 尝试从localStorage获取访问次数
+            let visitCount = localStorage.getItem('visitCount');
+            
+            // 如果没有记录，初始化为0
+            if (visitCount === null) {
+                visitCount = 0;
+            } else {
+                visitCount = parseInt(visitCount);
+            }
+            
+            // 增加访问次数
+            visitCount++;
+            
+            // 更新显示
+            document.getElementById('visitCount').textContent = visitCount;
+            
+            // 存储更新后的访问次数
+            localStorage.setItem('visitCount', visitCount);
+            
+            // 更新页面信息
+            updatePageInfo();
+        });
+        
+        // 更新页面信息
+        function updatePageInfo() {
+            // 这里可以添加从服务器获取实际数据的逻辑
+            // 目前使用本地存储模拟
+            const publishDate = "2025-01-01";
+            const updateDate = "2025-07-02";
+            
+            // 在页面上显示
+            document.querySelector('.info-item:nth-child(1) .info-value').textContent = publishDate;
+            document.querySelector('.info-item:nth-child(2) .info-value').textContent = updateDate;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // Simple filter functionality for publications
         document.querySelectorAll('.filter-btn').forEach(button => {
             button.addEventListener('click', function() {
