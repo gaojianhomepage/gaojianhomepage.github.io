@@ -865,7 +865,11 @@
             color: var(--accent);
         }
         
-        /* Page Info Section */
+
+
+
+
+      /* Page Info Section */
         .page-info {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
@@ -882,7 +886,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #ddd;
+            color: white;          /* 访问次数颜色 */
             font-size: 0.9rem;
         }
         
@@ -890,11 +894,18 @@
             color: var(--accent);
         }
         
-        .info-value {
+        .info-value {           /* 数字颜色 */
             font-weight: 600;
-            color: var(--accent);
+            color: white;
         }
-        
+
+
+
+
+
+
+
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .about-content {
@@ -952,12 +963,13 @@
             .compact-section {
                 margin-bottom: 2rem;
             }
-            
+
             .page-info {
                 flex-direction: column;
                 align-items: center;
                 gap: 10px;
             }
+
         }
         
         @media (max-width: 576px) {
@@ -1038,14 +1050,14 @@
                 <a href="#publications" class="btn btn-primary">学术论文</a>
                 <a href="#contact" class="btn btn-outline">联系我</a>
             </div>
-        </div>
-    </section>
+
+
 
     <div class="container">
         <!-- Page Information -->
         <div class="page-info">
             <div class="info-item">
-                <i class="fas fa-calendar-plus"></i> 发布时间: <span class="info-value">2025年1月1日</span>
+                <i class="fas fa-calendar-plus"></i> 发布时间: <span class="info-value">2025年6月15日</span>
             </div>
             <div class="info-item">
                 <i class="fas fa-calendar-check"></i> 修改时间: <span class="info-value">2025年7月2日</span>
@@ -1055,6 +1067,13 @@
             </div>
         </div>
 
+
+
+
+        </div>
+    </section>
+
+    <div class="container">
         <!-- About Section -->
         <section id="about" class="compact-section">
             <div class="compact-header">
@@ -1584,6 +1603,11 @@
             </div>
         </section>
 
+
+
+
+
+
         <!-- Team Section -->
         <section id="team" class="compact-section">
             <div class="compact-header">
@@ -1604,6 +1628,14 @@
             </div>
         </section>
         
+
+
+
+
+
+
+
+
         <!-- News Section - 科研动态 -->
         <section id="news" class="compact-section">
             <div class="compact-header news-header-section">
@@ -1670,14 +1702,49 @@
                 <h2>ENGLISH</h2>
             </div>
             <div style="margin: 20px 0;">
-                <div style="text-align: center; margin-top: 25px;">
+              <!--   <p>高见副教授所在的复杂系统科研团队致力于非线性动力学、复杂网络、斑图动力学、生物集群行为和种群生态学等前沿领域的研究。团队现有教授2人，副教授3人，讲师5人，博士研究生3人，硕士研究生12人。</p>   -->
+                
+            <div style="text-align: center; margin-top: 25px;">
                     <a href="https://gaojianhomepage.github.io/ENGLISH" class="btn btn-primary" target="_blank">
                         <i class="fas fa-home"></i> Home Page in English
                     </a>
+                    
                 </div>
             </div>
         </section>
+        
+
+
+
+
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Footer -->
     <footer id="contact">
@@ -1728,7 +1795,9 @@
     </footer>
 
     <script>
-        // 页面访问次数统计
+
+
+     // 页面访问次数统计
         document.addEventListener('DOMContentLoaded', function() {
             // 尝试从localStorage获取访问次数
             let visitCount = localStorage.getItem('visitCount');
@@ -1764,7 +1833,23 @@
             document.querySelector('.info-item:nth-child(1) .info-value').textContent = publishDate;
             document.querySelector('.info-item:nth-child(2) .info-value').textContent = updateDate;
         }
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // Simple filter functionality for publications
         document.querySelectorAll('.filter-btn').forEach(button => {
             button.addEventListener('click', function() {
