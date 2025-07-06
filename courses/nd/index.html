@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非线性动力学课程 - 17专题教案</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px 25px;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .modules-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .module-header {
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .module-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            opacity: 0.3;
+        }
+        
+        .module-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .module-category {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .module-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .learning-goals {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .learning-goals h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .learning-goals ul {
+            padding-left: 20px;
+        }
+        
+        .learning-goals li {
+            margin-bottom: 8px;
+        }
+        
+        .content-list h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .content-list ul {
+            padding-left: 20px;
+        }
+        
+        .content-list li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .content-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+        
+        .module-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: var(--light);
+            border-top: 1px solid #ddd;
+        }
+        
+        .duration, .difficulty {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .difficulty-level {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-left: 3px;
+        }
+        
+        .category-theory { background: linear-gradient(to right, #3498db, #2980b9); }
+        .category-phenomena { background: linear-gradient(to right, #e74c3c, #c0392b); }
+        .category-models { background: linear-gradient(to right, #2ecc71, #27ae60); }
+        .category-applications { background: linear-gradient(to right, #f39c12, #d35400); }
+        .category-modern { background: linear-gradient(to right, #9b59b6, #8e44ad); }
+        
+        @media (max-width: 768px) {
+            .modules-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .stats-bar {
+                gap: 15px;
+            }
+            
+            .stat-box {
+                padding: 10px 15px;
+                min-width: 120px;
+            }
+            
+            .stat-value {
+                font-size: 2rem;
+            }
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.8);
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-project-diagram"></i> 非线性动力学课程</h1>
+            <p class="subtitle">17个核心专题教案设计 - 从基础理论到前沿应用</p>
+            
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <div class="stat-value">17</div>
+                    <div class="stat-label">教学专题</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">知识模块</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">32+</div>
+                    <div class="stat-label">核心概念</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">12+</div>
+                    <div class="stat-label">应用领域</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">全部专题</button>
+            <button class="filter-btn" data-filter="theory">基础理论</button>
+            <button class="filter-btn" data-filter="phenomena">核心现象</button>
+            <button class="filter-btn" data-filter="models">模型与方程</button>
+            <button class="filter-btn" data-filter="applications">应用领域</button>
+            <button class="filter-btn" data-filter="modern">现代前沿</button>
+        </div>
+        
+        <div class="modules-container">
+            <!-- 专题1 -->
+            <div class="module-card" data-category="theory">
+                <div class="module-header category-theory">
+                    <div class="module-number">01</div>
+                    <h2 class="module-title">非线性系统导论</h2>
+                    <span class="module-category">基础理论篇</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>理解线性与非线性系统的本质差异</li>
+                            <li>掌握非线性系统建模的基本方法</li>
+                            <li>识别典型非线性系统及其特征</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>线性与非线性动力学对比分析</li>
+                            <li>经典实例：单摆、种群模型、非线性电路</li>
+                            <li>非线性现象初步：多稳态、滞后效应</li>
+                            <li>非线性微分方程基本特性</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #2ecc71;"></span>
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #ecf0f1;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题2 -->
+            <div class="module-card" data-category="theory">
+                <div class="module-header category-theory">
+                    <div class="module-number">02</div>
+                    <h2 class="module-title">相空间与流形分析</h2>
+                    <span class="module-category">基础理论篇</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>掌握相空间分析方法</li>
+                            <li>理解状态空间构建原理</li>
+                            <li>识别不变集及其特性</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>状态空间构建与轨线几何分析</li>
+                            <li>平衡点、周期轨道、不变环面</li>
+                            <li>相流与向量场可视化</li>
+                            <li>庞加莱映射基本原理</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #2ecc71;"></span>
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #ecf0f1;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题3 -->
+            <div class="module-card" data-category="theory">
+                <div class="module-header category-theory">
+                    <div class="module-number">03</div>
+                    <h2 class="module-title">稳定性理论进阶</h2>
+                    <span class="module-category">基础理论篇</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>掌握李雅普诺夫稳定性分析方法</li>
+                            <li>应用中心流形定理简化系统</li>
+                            <li>判断高维系统稳定性</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>李雅普诺夫直接/间接方法</li>
+                            <li>中心流形定理与应用</li>
+                            <li>吸引域与吸引子概念</li>
+                            <li>结构稳定性判据</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 3课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #2ecc71;"></span>
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题4 -->
+            <div class="module-card" data-category="phenomena">
+                <div class="module-header category-phenomena">
+                    <div class="module-number">04</div>
+                    <h2 class="module-title">分岔：定性行为的突变</h2>
+                    <span class="module-category">核心现象篇</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>理解分岔的基本概念与分类</li>
+                            <li>识别静态分岔与动态分岔</li>
+                            <li>掌握范式理论分析方法</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>静态分岔：鞍结、跨临界、叉式</li>
+                            <li>动态分岔：Hopf、倍周期</li>
+                            <li>范式理论与分岔规范形</li>
+                            <li>全局分岔与同宿分岔</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 3课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题5 -->
+            <div class="module-card" data-category="phenomena">
+                <div class="module-header category-phenomena">
+                    <div class="module-number">05</div>
+                    <h2 class="module-title">极限环与自持振荡</h2>
+                    <span class="module-category">核心现象篇</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>理解极限环的形成机制</li>
+                            <li>掌握自持振荡系统的分析方法</li>
+                            <li>应用庞加莱-本迪克松定理</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>庞加莱-本迪克松定理</li>
+                            <li>范德波尔振荡器模型</li>
+                            <li>生物节律与化学振荡</li>
+                            <li>极限环稳定性分析</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                        <span class="difficulty-level" style="background: #ecf0f1;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题6 -->
+            <div class="module-card" data-category="phenomena">
+                <div class="module-header category-phenomena">
+                    <div class="module-number">06</div>
+                    <h2 class="module-title">混沌：确定性随机性</h2>
+                    <span class="module-category">核心现象篇</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>理解混沌系统的三大特征</li>
+                            <li>掌握斯梅尔马蹄理论</li>
+                            <li>分析混沌系统的拉伸折叠机制</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>混沌定义三要素</li>
+                            <li>斯梅尔马蹄与拓扑传递性</li>
+                            <li>稠密周期点与初值敏感性</li>
+                            <li>洛伦茨吸引子分析</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 3课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题7 -->
+            <div class="module-card" data-category="phenomena">
+                <div class="module-header category-phenomena">
+                    <div class="module-number">07</div>
+                    <h2 class="module-title">混沌数值识别方法</h2>
+                    <span class="module-category">核心现象篇</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>掌握混沌系统的数值识别技术</li>
+                            <li>计算李雅普诺夫指数</li>
+                            <li>应用庞加莱截面分析混沌</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>李雅普诺夫指数计算</li>
+                            <li>庞加莱截面实验方法</li>
+                            <li>分岔图构建与分析</li>
+                            <li>功率谱与相关维数</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 3课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题8 -->
+            <div class="module-card" data-category="models">
+                <div class="module-header category-models">
+                    <div class="module-number">08</div>
+                    <h2 class="module-title">保守系统与耗散系统</h2>
+                    <span class="module-category">模型与方程类型</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>区分保守系统与耗散系统</li>
+                            <li>理解相体积收缩原理</li>
+                            <li>分析哈密顿系统特性</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>哈密顿系统 vs. 耗散结构</li>
+                            <li>相体积收缩与吸引子</li>
+                            <li>KAM定理与拟周期运动</li>
+                            <li>耗散系统中的混沌</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #2ecc71;"></span>
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #ecf0f1;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题9 -->
+            <div class="module-card" data-category="models">
+                <div class="module-header category-models">
+                    <div class="module-number">09</div>
+                    <h2 class="module-title">一维映射：混沌的简化模型</h2>
+                    <span class="module-category">模型与方程类型</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>掌握一维映射分析方法</li>
+                            <li>理解倍周期分岔通路</li>
+                            <li>应用符号动力学理论</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>逻辑斯蒂映射的倍周期分岔</li>
+                            <li>揉搓理论与符号动力学</li>
+                            <li>Feigenbaum常数与普适性</li>
+                            <li>帐篷映射与混沌机制</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #2ecc71;"></span>
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题10 -->
+            <div class="module-card" data-category="models">
+                <div class="module-header category-models">
+                    <div class="module-number">10</div>
+                    <h2 class="module-title">时滞微分方程</h2>
+                    <span class="module-category">模型与方程类型</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>掌握时滞微分方程特性</li>
+                            <li>分析时滞系统的稳定性</li>
+                            <li>理解时滞引起的振荡与混沌</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>特征方程与稳定性开关</li>
+                            <li>麦基方程分析</li>
+                            <li>时滞反馈控制系统</li>
+                            <li>生理系统中的时滞效应</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题11 -->
+            <div class="module-card" data-category="applications">
+                <div class="module-header category-applications">
+                    <div class="module-number">11</div>
+                    <h2 class="module-title">生物系统中的非线性</h2>
+                    <span class="module-category">应用领域专题</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>应用非线性动力学分析生物系统</li>
+                            <li>理解神经元放电机制</li>
+                            <li>建立种群竞争模型</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>神经元放电模型（FitzHugh-Nagumo）</li>
+                            <li>种群竞争与生态系统崩溃</li>
+                            <li>心脏电生理中的非线性</li>
+                            <li>基因调控网络动力学</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #2ecc71;"></span>
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #ecf0f1;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题12 -->
+            <div class="module-card" data-category="applications">
+                <div class="module-header category-applications">
+                    <div class="module-number">12</div>
+                    <h2 class="module-title">工程振动与控制</h2>
+                    <span class="module-category">应用领域专题</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>分析非线性振动系统</li>
+                            <li>应用混沌同步原理</li>
+                            <li>设计非线性控制系统</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>达芬振子与非线性阻尼</li>
+                            <li>混沌同步在保密通信中的应用</li>
+                            <li>非线性隔振系统设计</li>
+                            <li>参数激励系统动力学</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                        <span class="difficulty-level" style="background: #ecf0f1;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题13 -->
+            <div class="module-card" data-category="applications">
+                <div class="module-header category-applications">
+                    <div class="module-number">13</div>
+                    <h2 class="module-title">流体与湍流基础</h2>
+                    <span class="module-category">应用领域专题</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>理解湍流形成的动力学机制</li>
+                            <li>分析洛伦茨模型特性</li>
+                            <li>掌握通向湍流的路径</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>洛伦茨模型与大气对流</li>
+                            <li>准周期通向湍流（Ruelle-Takens路径）</li>
+                            <li>湍流中的奇怪吸引子</li>
+                            <li>流体失稳的动力学分析</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题14 -->
+            <div class="module-card" data-category="modern">
+                <div class="module-header category-modern">
+                    <div class="module-number">14</div>
+                    <h2 class="module-title">同步与网络动力学</h2>
+                    <span class="module-category">现代前沿扩展</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>理解耦合振子同步机制</li>
+                            <li>分析复杂网络动力学特性</li>
+                            <li>掌握网络级联失效模型</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>耦合振子同步（Kuramoto模型）</li>
+                            <li>复杂网络中的传播动力学</li>
+                            <li>级联失效与系统韧性</li>
+                            <li>多层网络同步与控制</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 3课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题15 -->
+            <div class="module-card" data-category="modern">
+                <div class="module-header category-modern">
+                    <div class="module-number">15</div>
+                    <h2 class="module-title">时空斑图形成</h2>
+                    <span class="module-category">现代前沿扩展</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>理解图灵斑图形成机制</li>
+                            <li>分析反应扩散系统特性</li>
+                            <li>掌握螺旋波动力学</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>反应扩散方程（Turing斑图）</li>
+                            <li>螺旋波与心脏动力学</li>
+                            <li>斑图选择与稳定性</li>
+                            <li>非平衡系统中的自组织</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题16 -->
+            <div class="module-card" data-category="modern">
+                <div class="module-header category-modern">
+                    <div class="module-number">16</div>
+                    <h2 class="module-title">分形与多重分形分析</h2>
+                    <span class="module-category">现代前沿扩展</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>掌握分形维数计算方法</li>
+                            <li>理解多重分形特性</li>
+                            <li>分析湍流间歇性</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>奇怪吸引子维数计算</li>
+                            <li>多重分形谱分析</li>
+                            <li>湍流间歇性建模</li>
+                            <li>分形生长动力学</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 2课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #2ecc71;"></span>
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 专题17 -->
+            <div class="module-card" data-category="modern">
+                <div class="module-header category-modern">
+                    <div class="module-number">17</div>
+                    <h2 class="module-title">数据驱动非线性预测</h2>
+                    <span class="module-category">现代前沿扩展</span>
+                </div>
+                <div class="module-body">
+                    <div class="learning-goals">
+                        <h3><i class="fas fa-bullseye"></i> 教学目标</h3>
+                        <ul>
+                            <li>掌握相空间重构技术</li>
+                            <li>应用机器学习预测混沌时序</li>
+                            <li>理解Takens定理应用</li>
+                        </ul>
+                    </div>
+                    <div class="content-list">
+                        <h3><i class="fas fa-book-open"></i> 核心内容</h3>
+                        <ul>
+                            <li>相空间重构（Takens定理）</li>
+                            <li>机器学习在混沌时序预测中的应用</li>
+                            <li>非线性时间序列分析</li>
+                            <li>递归图与预测技术</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="module-footer">
+                    <div class="duration"><i class="far fa-clock"></i> 3课时</div>
+                    <div class="difficulty">
+                        难度: 
+                        <span class="difficulty-level" style="background: #f1c40f;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                        <span class="difficulty-level" style="background: #e74c3c;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="watermark">
+        <i class="fas fa-graduation-cap"></i> 非线性动力学教学专家 | 深度求索教育研究院
+    </div>
+
+    <script>
+        // 筛选功能
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // 更新活动按钮
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                const modules = document.querySelectorAll('.module-card');
+                
+                modules.forEach(module => {
+                    if (filter === 'all' || module.getAttribute('data-category') === filter) {
+                        module.style.display = 'flex';
+                    } else {
+                        module.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // 添加简单的动画效果
+        document.querySelectorAll('.module-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100 + index * 50);
+        });
+    </script>
+</body>
+</html>
