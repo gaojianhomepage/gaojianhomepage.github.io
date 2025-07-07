@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>斑图动力学：模式形成的科学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4a235a);
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 Q50,20 100,0 L100,100 Q50,80 0,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00c9ff, #92fe9d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #c5e6f6;
+            position: relative;
+            z-index: 2;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content-section {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #64b5f6;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, #64b5f6, transparent);
+            margin-left: 20px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .pattern-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pattern-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .pattern-img {
+            height: 200px;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pattern-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .pattern-card:hover .pattern-img img {
+            transform: scale(1.05);
+        }
+        
+        .pattern-content {
+            padding: 20px;
+        }
+        
+        .pattern-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #4dd0e1;
+        }
+        
+        .math-section {
+            background: rgba(0, 20, 40, 0.5);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-family: 'Cambria', Georgia, serif;
+        }
+        
+        .equation {
+            font-size: 1.3rem;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        
+        .simulation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px 0;
+        }
+        
+        #patternCanvas {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            background: #111;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 180px;
+        }
+        
+        label {
+            margin-bottom: 8px;
+            color: #90caf9;
+            display: flex;
+            align-items: center;
+        }
+        
+        label i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #2c3e50;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4dd0e1;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .example-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .example-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .example-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #81c784;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-title i {
+            margin-right: 10px;
+            font-size: 1.6rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            color: #b0bec5;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-intro {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .section-text {
+            flex: 1;
+        }
+        
+        .section-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            max-height: 300px;
+        }
+        
+        .section-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-intro {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>斑图动力学</h1>
+            <p class="subtitle">探索自然界中模式形成与演化的数学原理</p>
+            <p>斑图动力学是研究复杂系统中自发形成的空间结构和时间演化模式的科学，涉及数学、物理、化学和生物学等多个领域。</p>
+        </header>
+        
+        <nav>
+            <button class="nav-btn active">概述</button>
+            <button class="nav-btn">基本原理</button>
+            <button class="nav-btn">数学模型</button>
+            <button class="nav-btn">应用领域</button>
+            <button class="nav-btn">模拟实验</button>
+        </nav>
+        
+        <section id="overview" class="content-section">
+            <h2>斑图动力学概述</h2>
+            
+            <div class="section-intro">
+                <div class="section-text">
+                    <p>斑图动力学（Pattern Dynamics）是研究复杂系统中自发形成的空间结构和时间演化模式的跨学科领域。它探索自然界中各种规则和不规则模式的形成机制，从动物皮毛的条纹到化学反应中的螺旋波，从沙漠沙丘到大脑神经活动。</p>
+                    <p>这一领域起源于1952年艾伦·图灵的开创性论文《形态发生的化学基础》，他提出反应-扩散机制可以解释生物模式的形成。此后，斑图动力学逐渐发展成为连接数学、物理、化学和生物学的桥梁学科。</p>
+                </div>
+                <div class="section-image">
+                    <img src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2023%2F1002%2Fc709c0adj00s1w0ct00ddc002a8017vm.jpg&thumbnail=660x2147483647&quality=80&type=jpg" alt="自然模式">
+                </div>
+            </div>
+            
+            <div class="image-gallery">
+                <div class="pattern-card">
+                    <div class="pattern-img">
+                        <img src="https://img0.baidu.com/it/u=566823970,2738676809&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500" alt="图灵斑图">
+                    </div>
+                    <div class="pattern-content">
+                        <h3 class="pattern-title">图灵斑图</h3>
+                        <p>由艾伦·图灵提出的反应-扩散模型可以解释自然界中许多重复模式的形成，如斑马条纹和豹斑。</p>
+                    </div>
+                </div>
+                
+                <div class="pattern-card">
+                    <div class="pattern-img">
+                        <img src="https://inews.gtimg.com/newsapp_match/0/2737890113/0" alt="反应-扩散系统">
+                    </div>
+                    <div class="pattern-content">
+                        <h3 class="pattern-title">反应-扩散系统</h3>
+                        <p>化学物质通过反应和扩散过程形成复杂空间模式的基本机制，如Belousov-Zhabotinsky反应。</p>
+                    </div>
+                </div>
+                
+                <div class="pattern-card">
+                    <div class="pattern-img">
+                        <img src="https://hbimg.b0.upaiyun.com/a9e6035fef4ffdac924aa30e136b9b514e8d6eb1287508-kg9x0y_fw658" alt="细菌菌落模式">
+                    </div>
+                    <div class="pattern-content">
+                        <h3 class="pattern-title">细菌菌落模式</h3>
+                        <p>微生物在受限环境中生长时形成的复杂分形结构，展示了生物系统中的自组织现象。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="principles" class="content-section">
+            <h2>基本原理与概念</h2>
+            <p>斑图动力学建立在几个基本概念之上，这些概念解释了简单规则如何产生复杂模式：</p>
+            
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h3 class="example-title"><i class="fas fa-balance-scale"></i> 自组织</h3>
+                    <p>系统在没有任何外部控制器的情况下，通过局部相互作用自发形成有序结构的过程。例如：鸟群的形成、晶体生长、雪花形成。</p>
+                </div>
+                
+                <div class="example-card">
+                    <h3 class="example-title"><i class="fas fa-sync-alt"></i> 对称破缺</h3>
+                    <p>系统在临界点失去对称性，从而产生空间模式的过程。均匀状态变得不稳定，导致模式出现，如Bénard对流胞。</p>
+                </div>
+                
+                <div class="example-card">
+                    <h3 class="example-title"><i class="fas fa-wave-square"></i> 波与振荡</h3>
+                    <p>时空模式中常见的波动现象，如靶波、螺旋波和振荡模式，常见于心脏组织、化学振荡反应和萤火虫同步闪光。</p>
+                </div>
+                
+                <div class="example-card">
+                    <h3 class="example-title"><i class="fas fa-project-diagram"></i> 分形结构</h3>
+                    <p>在不同尺度上具有自相似性的复杂几何形状，如海岸线、肺支气管结构、河流网络和神经网络。</p>
+                </div>
+            </div>
+            
+            <div class="section-intro" style="margin-top: 40px;">
+                <div class="section-image">
+                    <img src="https://i2.hdslb.com/bfs/archive/b2b2c751739fef9225d0526d9331e4b553f2a07d.jpg" alt="分形结构">
+                </div>
+                <div class="section-text">
+                    <h3>非线性动力学</h3>
+                    <p>斑图形成的核心是非线性动力学：系统中微小的变化可能导致巨大的、非比例的结果。这种非线性特性使得系统能够从均匀状态自发演化出复杂的空间模式。</p>
+                    <p>典型的非线性系统包括：</p>
+                    <ul style="padding-left: 20px; margin: 15px 0;">
+                        <li>反应-扩散系统</li>
+                        <li>耦合振荡器</li>
+                        <li>流体动力学系统</li>
+                        <li>神经动力学网络</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="math" class="content-section">
+            <h2>数学模型</h2>
+            <p>斑图动力学使用多种数学工具描述和预测模式的形成与演化：</p>
+            
+            <div class="math-section">
+                <h3><i class="fas fa-calculator"></i> 反应-扩散方程</h3>
+                <p>描述物质浓度如何随时间变化并在空间中扩散的基本方程：</p>
+                <div class="equation">
+                    ∂u/∂t = D<sub>u</sub>∇²u + f(u,v)<br>
+                    ∂v/∂t = D<sub>v</sub>∇²v + g(u,v)
+                </div>
+                <p>其中 u 和 v 代表化学物质浓度，D 是扩散系数，f 和 g 表示局部反应动力学。</p>
+            </div>
+            
+            <div class="math-section">
+                <h3><i class="fas fa-exclamation-triangle"></i> 图灵不稳定性</h3>
+                <p>当满足以下条件时，均匀稳态会变得不稳定，导致空间模式的形成：</p>
+                <div class="equation">
+                    D<sub>u</sub> / D<sub>v</sub> > 1 且 f<sub>u</sub>g<sub>v</sub> - f<sub>v</sub>g<sub>u</sub> > 0
+                </div>
+                <p>其中 f<sub>u</sub>, f<sub>v</sub>, g<sub>u</sub>, g<sub>v</sub> 是反应函数在稳态处的偏导数。</p>
+            </div>
+            
+            <div class="section-intro" style="margin-top: 40px;">
+                <div class="section-text">
+                    <h3>数值模拟方法</h3>
+                    <p>由于大多数斑图动力学方程没有解析解，数值方法成为研究这些系统的重要工具：</p>
+                    <ul style="padding-left: 20px; margin: 15px 0;">
+                        <li>有限差分法：将空间和时间离散化求解偏微分方程</li>
+                        <li>元胞自动机：基于简单规则的离散空间模型</li>
+                        <li>粒子方法：追踪系统中每个粒子的运动</li>
+                        <li>谱方法：利用傅里叶变换求解空间导数</li>
+                    </ul>
+                </div>
+                <div class="section-image">
+                    <img src="https://copyright.bdstatic.com/vcg/creative/6f903d2af0acda77f0b213ed71e16324.jpg@wm_1,k_cGljX2JqaHdhdGVyLmpwZw==" alt="数学模拟">
+                </div>
+            </div>
+        </section>
+        
+        <section id="simulation" class="content-section">
+            <h2>斑图动力学模拟</h2>
+            <p>通过改变参数观察不同类型的斑图形成：</p>
+            
+            <div class="simulation-container">
+                <canvas id="patternCanvas"></canvas>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="diffusionRate"><i class="fas fa-wind"></i> 扩散率 (D)</label>
+                        <input type="range" id="diffusionRate" min="0.01" max="0.2" step="0.01" value="0.1">
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="feedRate"><i class="fas fa-seedling"></i> 供给速率 (F)</label>
+                        <input type="range" id="feedRate" min="0.01" max="0.06" step="0.002" value="0.03">
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="killRate"><i class="fas fa-skull"></i> 消耗速率 (K)</label>
+                        <input type="range" id="killRate" min="0.04" max="0.07" step="0.001" value="0.055">
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <button id="resetBtn" class="nav-btn"><i class="fas fa-redo"></i> 重置模拟</button>
+                    <button id="randomBtn" class="nav-btn"><i class="fas fa-dice"></i> 随机初始条件</button>
+                    <button id="captureBtn" class="nav-btn"><i class="fas fa-camera"></i> 保存图像</button>
+                </div>
+            </div>
+            
+            <div class="math-section" style="margin-top: 40px;">
+                <h3><i class="fas fa-flask"></i> Gray-Scott模型</h3>
+                <p>当前模拟使用Gray-Scott模型，该模型描述了两种化学物质的反应扩散过程：</p>
+                <div class="equation">
+                    ∂u/∂t = D<sub>u</sub>∇²u - uv² + F(1 - u)<br>
+                    ∂v/∂t = D<sub>v</sub>∇²v + uv² - (F + K)v
+                </div>
+                <p>其中u和v是化学物质浓度，F是供给速率，K是消耗速率。通过调整这些参数，可以产生斑点、条纹、迷宫等多种模式。</p>
+            </div>
+        </section>
+        
+        <section id="applications" class="content-section">
+            <h2>应用领域</h2>
+            <p>斑图动力学在多个科学领域有重要应用：</p>
+            
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h3 class="example-title"><i class="fas fa-dna"></i> 发育生物学</h3>
+                    <p>解释动物皮毛图案、肢体发育和器官形成过程中的模式形成机制，理解形态发生的原理。</p>
+                </div>
+                
+                <div class="example-card">
+                    <h3 class="example-title"><i class="fas fa-vial"></i> 化学与材料科学</h3>
+                    <p>理解BZ反应等化学振荡器以及材料自组装过程中的图案形成，设计新型功能材料。</p>
+                </div>
+                
+                <div class="example-card">
+                    <h3 class="example-title"><i class="fas fa-brain"></i> 神经科学</h3>
+                    <p>研究大脑皮层活动模式、癫痫波传播和神经发育中的模式形成，理解脑功能与疾病。</p>
+                </div>
+                
+                <div class="example-card">
+                    <h3 class="example-title"><i class="fas fa-tree"></i> 生态学与地貌学</h3>
+                    <p>解释植被分布模式、沙漠沙丘形成和地质结构中的规则图案，预测环境变化。</p>
+                </div>
+            </div>
+            
+            <div class="section-intro" style="margin-top: 40px;">
+                <div class="section-image">
+                    <img src="https://img2.baidu.com/it/u=3463786495,3978310835&fm=253&fmt=auto&app=138&f=JPEG?w=875&h=500" alt="未来应用">
+                </div>
+                <div class="section-text">
+                    <h3>前沿研究与未来方向</h3>
+                    <p>斑图动力学正在多个前沿领域展现出巨大潜力：</p>
+                    <ul style="padding-left: 20px; margin: 15px 0;">
+                        <li>合成生物学：设计具有特定模式的工程生物系统</li>
+                        <li>活性物质：研究自驱动粒子系统的集体行为</li>
+                        <li>人工智能：受生物模式启发的神经网络结构</li>
+                        <li>医学应用：基于模式理论的疾病诊断和治疗</li>
+                        <li>气候科学：理解全球气候模式的形成与演化</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 斑图动力学研究 | 本页面为教学演示用途</p>
+            <p>斑图动力学 - 探索自然界中的隐藏秩序</p>
+            <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px;">
+                <a href="#" style="color: #64b5f6; text-decoration: none;"><i class="fab fa-github"></i> GitHub</a>
+                <a href="#" style="color: #64b5f6; text-decoration: none;"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#" style="color: #64b5f6; text-decoration: none;"><i class="fas fa-book"></i> 参考文献</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 初始化模拟
+        function initSimulation() {
+            const canvas = document.getElementById('patternCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // 创建离屏画布用于计算
+            const bufferCanvas = document.createElement('canvas');
+            bufferCanvas.width = width;
+            bufferCanvas.height = height;
+            const bufferCtx = bufferCanvas.getContext('2d');
+            
+            // 初始化数据
+            let grid = [];
+            let nextGrid = [];
+            
+            // 初始化网格
+            function initGrid() {
+                grid = [];
+                nextGrid = [];
+                
+                for (let x = 0; x < width; x++) {
+                    grid[x] = [];
+                    nextGrid[x] = [];
+                    for (let y = 0; y < height; y++) {
+                        // 初始随机值
+                        if (Math.random() > 0.9) {
+                            grid[x][y] = {
+                                a: 0.8 + Math.random() * 0.2,
+                                b: 0.2 + Math.random() * 0.2
+                            };
+                        } else {
+                            grid[x][y] = {
+                                a: 1.0,
+                                b: 0.0
+                            };
+                        }
+                        nextGrid[x][y] = {a: 0, b: 0};
+                    }
+                }
+                
+                // 在中心添加一些扰动
+                const centerX = Math.floor(width / 2);
+                const centerY = Math.floor(height / 2);
+                const radius = 20;
+                
+                for (let x = centerX - radius; x < centerX + radius; x++) {
+                    for (let y = centerY - radius; y < centerY + radius; y++) {
+                        if (x >= 0 && x < width && y >= 0 && y < height) {
+                            const dx = x - centerX;
+                            const dy = y - centerY;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            
+                            if (dist < radius) {
+                                grid[x][y] = {
+                                    a: 0.5,
+                                    b: 0.25
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // 参数
+            let dA = 1.0;
+            let dB = 0.5;
+            let feed = 0.03;
+            let kill = 0.055;
+            
+            // 更新参数控制
+            document.getElementById('diffusionRate').addEventListener('input', function() {
+                dA = parseFloat(this.value);
+            });
+            
+            document.getElementById('feedRate').addEventListener('input', function() {
+                feed = parseFloat(this.value);
+            });
+            
+            document.getElementById('killRate').addEventListener('input', function() {
+                kill = parseFloat(this.value);
+            });
+            
+            document.getElementById('resetBtn').addEventListener('click', initGrid);
+            document.getElementById('randomBtn').addEventListener('click', initGrid);
+            
+            document.getElementById('captureBtn').addEventListener('click', function() {
+                const link = document.createElement('a');
+                link.download = 'pattern-dynamics-simulation.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+            
+            // 拉普拉斯算子计算
+            function laplaceA(x, y) {
+                let sum = 0;
+                sum += grid[x][y].a * -1;
+                sum += grid[x-1]?.[y]?.a * 0.2 || 0;
+                sum += grid[x+1]?.[y]?.a * 0.2 || 0;
+                sum += grid[x][y-1]?.a * 0.2 || 0;
+                sum += grid[x][y+1]?.a * 0.2 || 0;
+                sum += grid[x-1]?.[y-1]?.a * 0.05 || 0;
+                sum += grid[x+1]?.[y-1]?.a * 0.05 || 0;
+                sum += grid[x-1]?.[y+1]?.a * 0.05 || 0;
+                sum += grid[x+1]?.[y+1]?.a * 0.05 || 0;
+                return sum;
+            }
+            
+            function laplaceB(x, y) {
+                let sum = 0;
+                sum += grid[x][y].b * -1;
+                sum += grid[x-1]?.[y]?.b * 0.2 || 0;
+                sum += grid[x+1]?.[y]?.b * 0.2 || 0;
+                sum += grid[x][y-1]?.b * 0.2 || 0;
+                sum += grid[x][y+1]?.b * 0.2 || 0;
+                sum += grid[x-1]?.[y-1]?.b * 0.05 || 0;
+                sum += grid[x+1]?.[y-1]?.b * 0.05 || 0;
+                sum += grid[x-1]?.[y+1]?.b * 0.05 || 0;
+                sum += grid[x+1]?.[y+1]?.b * 0.05 || 0;
+                return sum;
+            }
+            
+            // 更新模拟
+            function update() {
+                // 更新网格
+                for (let x = 1; x < width - 1; x++) {
+                    for (let y = 1; y < height - 1; y++) {
+                        const a = grid[x][y].a;
+                        const b = grid[x][y].b;
+                        
+                        nextGrid[x][y].a = a +
+                            (dA * laplaceA(x, y) -
+                            (a * b * b) +
+                            (feed * (1 - a)));
+                        
+                        nextGrid[x][y].b = b +
+                            (dB * laplaceB(x, y)) +
+                            (a * b * b) -
+                            ((kill + feed) * b);
+                        
+                        // 约束值在0-1之间
+                        nextGrid[x][y].a = Math.max(0, Math.min(1, nextGrid[x][y].a));
+                        nextGrid[x][y].b = Math.max(0, Math.min(1, nextGrid[x][y].b));
+                    }
+                }
+                
+                // 交换网格
+                const temp = grid;
+                grid = nextGrid;
+                nextGrid = temp;
+                
+                // 渲染
+                const imageData = bufferCtx.createImageData(width, height);
+                
+                for (let x = 0; x < width; x++) {
+                    for (let y = 0; y < height; y++) {
+                        const idx = (y * width + x) * 4;
+                        const a = grid[x][y].a;
+                        const b = grid[x][y].b;
+                        
+                        // 使用a和b值计算颜色
+                        const color = Math.floor((a - b) * 255);
+                        
+                        // 创建蓝绿色调
+                        imageData.data[idx] = 50; // R
+                        imageData.data[idx + 1] = 150 + color * 0.5; // G
+                        imageData.data[idx + 2] = 150 + color; // B
+                        imageData.data[idx + 3] = 255; // A
+                    }
+                }
+                
+                bufferCtx.putImageData(imageData, 0, 0);
+                ctx.drawImage(bufferCanvas, 0, 0);
+                
+                requestAnimationFrame(update);
+            }
+            
+            // 初始化并开始模拟
+            initGrid();
+            update();
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initSimulation();
+            
+            // 导航按钮事件
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 平滑滚动到对应部分
+                    const sections = ['overview', 'principles', 'math', 'applications', 'simulation'];
+                    const targetId = sections[Array.from(this.parentElement.children).indexOf(this)];
+                    document.getElementById(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
