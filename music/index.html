@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>般若 · 禅乐专辑 | 复古黑胶唱片</title>
+<meta name="description" content="复古黑胶风格音乐专辑展示页 · 《般若》禅乐专辑">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Oswald:wght@400;500;600&family=Noto+Serif+SC:wght@500;700;900&family=Special+Elite&display=swap">
+<style>
+/* ===================== Token ===================== */
+:root{
+  --ink:#18120c;          /* 黑胶近黑（带暖褐） */
+  --ink-2:#221810;
+  --ink-3:#0f0a06;
+  --paper:#eee0c5;        /* 旧纸奶油 */
+  --paper-2:#f6eeda;
+  --amber:#d8a33e;        /* 标签金 */
+  --amber-deep:#a86f1d;
+  --caramel:#8a5a2b;
+  --line:rgba(24,18,12,.20);
+  --line-dark:rgba(238,224,197,.16);
+  --serif:'Noto Serif SC','Songti SC','SimSun',serif;
+  --display:'Oswald','Arial Narrow','Helvetica Neue',Arial,sans-serif;
+  --type:'Special Elite','Courier New',monospace;
+}
+
+/* ===================== Reset / base ===================== */
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--serif);
+  background:var(--ink);
+  color:var(--paper);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+h1,h2,h3,p,ol,ul,figure{margin:0;padding:0;}
+
+/* 纸张颗粒（全屏噪点） */
+.grain{
+  position:fixed;inset:0;z-index:20;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+.container{width:min(1120px,92vw);margin-inline:auto;}
+
+.section{padding-block:clamp(64px,9vw,120px);}
+
+/* 滚动显现 */
+[data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease;}
+[data-reveal].is-in{opacity:1;transform:none;}
+
+/* ===================== Header ===================== */
+.site-header{
+  position:relative;z-index:10;
+  padding:18px 0;
+  border-bottom:1px solid var(--line-dark);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.brand{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--display);letter-spacing:.16em;font-size:15px;color:var(--paper);
+}
+.brand .disc-mini{
+  width:30px;height:30px;border-radius:50%;flex:none;
+  background:
+    radial-gradient(circle at 35% 32%,rgba(255,255,255,.10),transparent 45%),
+    repeating-radial-gradient(circle at 50% 50%,#1d150d 0,#1d150d 1px,#0e0a06 1px,#0e0a06 2px);
+  box-shadow:0 2px 8px rgba(0,0,0,.6),inset 0 0 4px rgba(0,0,0,.7);
+}
+.brand .disc-mini::after{
+  content:"";display:block;width:34%;aspect-ratio:1;margin:35% auto;
+  border-radius:50%;background:var(--amber-deep);box-shadow:inset 0 0 4px rgba(0,0,0,.4);
+}
+.site-nav{display:flex;gap:26px;}
+.site-nav a{
+  font-family:var(--display);font-size:14px;letter-spacing:.14em;color:var(--paper);
+  opacity:.85;transition:opacity .2s,color .2s;padding:4px 0;border-bottom:1px solid transparent;
+}
+.site-nav a:hover{opacity:1;color:var(--amber);border-color:var(--amber);}
+
+/* ===================== Hero ===================== */
+.hero{padding-block:clamp(48px,7vw,96px) 0;position:relative;}
+.hero .container{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(36px,6vw,80px);align-items:center;
+}
+
+/* 唱机视觉 */
+.turntable{position:relative;width:min(560px,100%);aspect-ratio:1;margin-inline:auto;}
+.record-wrap{position:absolute;left:50%;top:50%;width:80%;transform:translate(-50%,-50%);}
+.record{
+  width:100%;aspect-ratio:1;border-radius:50%;position:relative;
+  animation:spin 16s linear infinite;
+  background:
+    radial-gradient(circle at 32% 30%,rgba(255,255,255,.09),transparent 44%),
+    repeating-radial-gradient(circle at 50% 50%,#1a120b 0,#1a120b 1.2px,#0e0a06 1.2px,#0e0a06 2.4px),
+    radial-gradient(circle at 50% 50%,#1c140d,#0d0906 80%);
+  box-shadow:0 34px 60px rgba(0,0,0,.6),0 12px 26px rgba(0,0,0,.45),inset 0 -10px 26px rgba(0,0,0,.55),inset 0 6px 18px rgba(0,0,0,.4);
+}
+.record-label{
+  position:absolute;left:50%;top:50%;width:36%;aspect-ratio:1;transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle at 34% 28%,#e9bd68,#d09a33 55%,#a8721e);
+  box-shadow:inset 0 0 16px rgba(90,55,8,.55),0 2px 8px rgba(0,0,0,.4);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  color:#2c1b07;text-align:center;padding:8%;
+}
+.label-brand{font-family:var(--display);font-size:clamp(8px,1.1vw,11px);letter-spacing:.28em;}
+.label-title{font-weight:900;font-size:clamp(13px,2vw,20px);letter-spacing:.12em;line-height:1.3;}
+.label-artist{font-size:clamp(8px,1.2vw,11px);letter-spacing:.18em;opacity:.85;}
+.label-rpm{font-family:var(--type);font-size:clamp(7px,1vw,10px);letter-spacing:.1em;margin-top:4px;opacity:.8;}
+.record-hole{
+  position:absolute;left:50%;top:50%;width:7%;aspect-ratio:1;transform:translate(-50%,-50%);
+  border-radius:50%;background:#1c130a;box-shadow:inset 0 0 4px rgba(0,0,0,.9);
+}
+
+/* 封套 */
+.sleeve{
+  position:absolute;right:0;bottom:2%;width:54%;margin:0;
+  background:var(--paper);color:var(--ink);
+  padding:10px 10px 0;
+  transform:rotate(-5deg);
+  box-shadow:0 26px 44px rgba(0,0,0,.5),0 6px 14px rgba(0,0,0,.4);
+}
+.sleeve-art{aspect-ratio:1;overflow:hidden;}
+.sleeve-art img{width:100%;height:100%;object-fit:cover;}
+.sleeve-title{
+  display:flex;align-items:baseline;justify-content:space-between;gap:8px;
+  padding:10px 2px 12px;border-top:1px solid var(--line);
+}
+.st-title{font-weight:900;font-size:15px;letter-spacing:.14em;}
+.st-artist{font-size:12px;color:var(--caramel);letter-spacing:.1em;}
+
+/* 右侧信息 */
+.hero-info{position:relative;z-index:2;}
+.eyebrow{
+  font-family:var(--type);font-size:13px;letter-spacing:.08em;color:var(--amber);
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--amber);}
+.hero-title{
+  font-weight:900;font-size:clamp(42px,6.2vw,76px);line-height:1.12;letter-spacing:.04em;color:var(--paper-2);
+  margin-bottom:6px;
+}
+.hero-artist{font-size:clamp(18px,2.2vw,24px);color:var(--paper);opacity:.92;letter-spacing:.2em;margin-bottom:20px;}
+.hero-meta{
+  font-family:var(--display);font-size:14px;letter-spacing:.16em;color:var(--amber);
+  display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:26px;
+}
+.hero-desc{max-width:46ch;color:rgba(238,224,197,.82);font-size:15.5px;margin-bottom:30px;}
+
+.controls{display:flex;align-items:center;gap:18px;margin-bottom:22px;flex-wrap:wrap;}
+.btn-play{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--amber);color:#241708;font-weight:700;font-size:16px;letter-spacing:.08em;
+  padding:15px 28px;border-radius:999px;
+  box-shadow:0 12px 24px rgba(216,163,62,.22);
+  transition:transform .2s,box-shadow .2s,background .2s;
+}
+.btn-play:hover{transform:translateY(-2px);background:#e6b75c;box-shadow:0 16px 30px rgba(216,163,62,.32);}
+.btn-play svg{width:18px;height:18px;}
+.btn-tiny{
+  font-family:var(--display);font-size:13px;letter-spacing:.12em;color:var(--paper);
+  opacity:.8;border-bottom:1px dashed rgba(238,224,197,.4);padding-bottom:2px;transition:opacity .2s,color .2s;
+}
+.btn-tiny:hover{opacity:1;color:var(--amber);}
+
+/* 播放器 */
+.player{max-width:460px;margin-bottom:22px;}
+.progress{
+  position:relative;height:6px;background:rgba(238,224,197,.18);border-radius:99px;cursor:pointer;
+}
+.progress-fill{position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--amber);border-radius:99px;}
+.progress-dot{
+  position:absolute;top:50%;left:0%;width:12px;height:12px;border-radius:50%;
+  background:var(--amber);transform:translate(-50%,-50%);
+  box-shadow:0 0 0 3px rgba(216,163,62,.22);
+}
+.times{display:flex;justify-content:space-between;margin-top:8px;font-family:var(--display);font-size:12.5px;color:rgba(238,224,197,.72);letter-spacing:.06em;}
+
+/* 现在播放 */
+.nowplaying{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--display);font-size:14px;letter-spacing:.06em;color:var(--paper);
+  border:1px solid var(--line-dark);border-radius:999px;padding:9px 18px;max-width:100%;
+}
+.nowplaying .np-flag{color:var(--amber);letter-spacing:.14em;flex:none;}
+#np-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.eq{display:inline-flex;align-items:flex-end;gap:2.5px;height:14px;flex:none;}
+.eq i{width:3px;height:5px;background:currentColor;animation:eq 1s ease-in-out infinite;animation-play-state:paused;}
+.eq.is-playing i{animation-play-state:running;}
+.eq i:nth-child(2){animation-delay:.22s;}
+.eq i:nth-child(3){animation-delay:.44s;}
+
+/* ===================== Tracklist（纸面） ===================== */
+.tracklist{background:var(--paper);color:var(--ink);border-radius:6px 6px 0 0;}
+.section-head{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap;margin-bottom:clamp(30px,4vw,52px);}
+.kicker{font-family:var(--display);font-size:13px;letter-spacing:.34em;color:var(--amber-deep);}
+.section-head h2{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:.06em;}
+.section-head .sub{color:var(--caramel);font-size:14px;}
+
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);}
+.side{min-width:0;}
+.side-head{
+  display:flex;align-items:center;gap:16px;
+  border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:8px;
+}
+.side-badge{
+  width:46px;height:46px;border-radius:50%;flex:none;
+  display:grid;place-items:center;
+  font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:.04em;color:#241708;
+  background:radial-gradient(circle at 34% 28%,#e9bd68,#cf9a33 60%,#a8721e);
+  box-shadow:inset 0 0 8px rgba(90,55,8,.4);
+}
+.side-name{font-size:19px;font-weight:900;letter-spacing:.1em;}
+.side-total{font-family:var(--type);font-size:12.5px;color:var(--caramel);letter-spacing:.06em;}
+
+.tracks{list-style:none;}
+.track{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;
+  padding:14px 10px;border-bottom:1px solid var(--line);
+  cursor:pointer;transition:background .2s,padding-left .25s;border-left:3px solid transparent;
+}
+.track:hover{background:rgba(216,163,62,.12);padding-left:16px;border-left-color:var(--amber-deep);}
+.t-no{font-family:var(--display);font-size:14px;color:var(--caramel);letter-spacing:.06em;width:34px;flex:none;}
+.t-title{font-size:16.5px;font-weight:600;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.t-dur{font-family:var(--display);font-size:13.5px;color:var(--caramel);letter-spacing:.06em;justify-self:end;}
+.t-eq{display:none;justify-self:end;color:var(--amber-deep);}
+.track.is-active{background:rgba(216,163,62,.16);border-left-color:var(--amber-deep);}
+.track.is-active .t-no{display:none;}
+.track.is-active .t-eq{display:inline-flex;}
+.track.is-active .t-title{color:var(--amber-deep);}
+.track:focus-visible{outline:2px solid var(--amber-deep);outline-offset:-2px;background:rgba(216,163,62,.12);}
+
+/* ===================== 手记（liner notes） ===================== */
+.notes{background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
+.notes .container{max-width:820px;}
+.notes-kicker{font-family:var(--type);color:var(--amber);font-size:13px;letter-spacing:.14em;margin-bottom:30px;display:flex;align-items:center;gap:14px;}
+.notes-kicker::before{content:"";width:36px;height:1px;background:var(--amber);}
+.notes-body{
+  font-size:clamp(17px,2.2vw,21px);line-height:2;color:rgba(238,224,197,.92);
+  letter-spacing:.03em;
+}
+.notes-body p{text-indent:2em;margin-bottom:1.1em;}
+.notes-body .sign{
+  font-family:var(--type);font-size:14px;color:var(--amber);letter-spacing:.12em;
+  display:block;margin-top:26px;text-align:right;text-indent:0;
+}
+.notes .disc-deco{
+  position:absolute;right:-140px;top:50%;transform:translateY(-50%);
+  width:380px;aspect-ratio:1;border-radius:50%;opacity:.10;pointer-events:none;
+  background:repeating-radial-gradient(circle at 50% 50%,#eee0c5 0,#eee0c5 2px,transparent 2px,transparent 4px);
+}
+
+/* ===================== Footer ===================== */
+.site-footer{border-top:1px solid var(--line-dark);padding:34px 0 44px;}
+.footer-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center;}
+.footer-meta{font-family:var(--type);font-size:12.5px;color:rgba(238,224,197,.6);letter-spacing:.1em;}
+.footer-mark{font-family:var(--display);font-size:12.5px;letter-spacing:.22em;color:var(--amber);}
+
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes eq{0%,100%{height:5px;}50%{height:14px;}}
+
+/* ===================== 响应式 ===================== */
+@media (max-width:860px){
+  .hero .container{grid-template-columns:1fr;gap:40px;}
+  .turntable{width:min(430px,100%);}
+  .sleeve{width:52%;}
+  .sides{grid-template-columns:1fr;}
+  .site-nav{gap:16px;}
+}
+@media (max-width:480px){
+  .turntable{width:min(340px,100%);}
+  .header-inner{flex-direction:column;align-items:flex-start;gap:12px;}
+  .site-nav{width:100%;justify-content:space-between;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .record{animation:none;}
+  .eq i{animation:none;}
+  [data-reveal]{opacity:1;transform:none;transition:none;}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ===== Header ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="disc-mini" aria-hidden="true"></span>
+      <span>RECORD&nbsp;STUDIO</span>
+    </div>
+    <nav class="site-nav" aria-label="页面导航">
+      <a href="#tracklist">曲目</a>
+      <a href="#notes">手记</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" aria-label="专辑介绍">
+  <div class="container">
+    <div class="turntable" data-reveal>
+      <div class="record-wrap">
+        <div class="record" id="record" aria-hidden="true">
+          <div class="record-label">
+            <span class="label-brand" id="label-brand">BR-2025</span>
+            <span class="label-title" id="label-title">般若</span>
+            <span class="label-artist" id="label-artist">佚名</span>
+            <span class="label-rpm">33⅓ RPM</span>
+          </div>
+          <div class="record-hole"></div>
+        </div>
+      </div>
+      <figure class="sleeve">
+        <div class="sleeve-art"><img id="cover-img" src="" alt="专辑封面"></div>
+        <figcaption class="sleeve-title">
+          <span class="st-title" id="sleeve-title">般若</span>
+          <span class="st-artist" id="sleeve-artist">佚名</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="hero-info" data-reveal>
+      <p class="eyebrow" id="hero-eyebrow">A 33⅓ RPM · 立体声唱片</p>
+      <h1 class="hero-title" id="hero-title">般若</h1>
+      <p class="hero-artist" id="hero-artist">佚 名</p>
+      <p class="hero-meta" id="hero-meta"></p>
+      <p class="hero-desc" id="hero-desc"></p>
+      <div class="controls">
+        <button class="btn-play" id="btn-play" type="button">
+          <span id="btn-icon"></span>
+          <span id="btn-label">播放全部</span>
+        </button>
+        <button class="btn-tiny" id="btn-pause" type="button" style="display:none;">暂停试听</button>
+      </div>
+      <div class="player" aria-label="播放进度">
+        <div class="progress" id="progress" role="slider" aria-label="播放进度" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progress-fill" id="progress-fill"></div>
+          <div class="progress-dot" id="progress-dot"></div>
+        </div>
+        <div class="times">
+          <span id="time-cur">0:00</span>
+          <span id="time-total">--:--</span>
+        </div>
+      </div>
+      <div class="nowplaying" id="nowplaying" aria-live="polite">
+        <span class="eq" id="eq-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="np-flag">NOW</span>
+        <span id="np-text">尚未播放 · 点击任意曲目开始试听</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 曲目 ===== -->
+<section class="tracklist section" id="tracklist">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <span class="kicker">TRACKLIST</span>
+      <h2>曲目</h2>
+      <span class="sub" id="side-sub"></span>
+    </header>
+    <div class="sides" id="sides"></div>
+  </div>
+</section>
+
+<!-- ===== 手记 ===== -->
+<section class="notes section" id="notes">
+  <div class="disc-deco" aria-hidden="true"></div>
+  <div class="container">
+    <p class="notes-kicker" data-reveal>LINER NOTES · 专辑手记</p>
+    <div class="notes-body" id="notes-body" data-reveal></div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <div class="container footer-row">
+    <span class="footer-meta" id="footer-meta"></span>
+    <span class="footer-mark">33⅓ RPM · STEREO · BR-2025</span>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+<script>
+/* =========================================================
+   ✎ 专辑数据区 —— 修改这里即可全局更新页面内容
+   file 为 music/ 子文件夹下的音频文件名（页面通过相对路径播放）
+   ========================================================= */
+var ALBUM = {
+  title: "般若",
+  artist: "高见",           // ← 艺人/演唱者待补充
+  year: "2025",
+  genre: "禅乐 · 佛曲",
+  catalog: "BR-2025",
+  rpm: "33⅓",
+  cover: "https://aka.doubaocdn.com/s/DWFq26uoVb",
+  desc: "一张以“般若”为题记的禅乐专辑。二十段旋律，取经偈之愿、山林之静，愿你在音声里得片刻清凉。",
+  notes: [
+    "二十首曲目，以般若为题记：从“独饮西楼”的孤意，到“悟无生”的澄明，音声起落之间，皆是观照自心的路径。",
+    "愿你在唱针落下的这一刻，暂离尘劳，得片刻安宁。"
+  ],
+  sides: [
+    {
+      label: "A",
+      name: "A 面",
+      tracks: [
+        { title: "道难攀",       file: "道难攀_2025101092242.mp3",         dur: "2:59" },
+        { title: "地狱书·悲愿光", file: "地狱书-悲愿光_20251012133137.mp3", dur: "2:59" },
+        { title: "独饮西楼",     file: "独饮西楼_2025101092247.mp3",       dur: "2:43" },
+        { title: "顿醒",         file: "顿醒_2025101092251.mp3",           dur: "1:59" },
+        { title: "顿醒2",        file: "顿醒2_2025101092254.mp3",          dur: "2:45" },
+        { title: "顿醒偈",       file: "顿醒偈_2025101092257.mp3",         dur: "2:59" },
+        { title: "红尘风云",     file: "红尘风云_202510109232.mp3",         dur: "2:59" },
+        { title: "荒唐一场",     file: "荒唐一场_202510109237.mp3",         dur: "2:58" },
+        { title: "镜花水月",     file: "镜花水月_2025101092237.mp3",        dur: "2:59" },
+        { title: "离幻即觉",     file: "离幻即觉_2025101092311.mp3",        dur: "2:55" }
+      ]
+    },
+    {
+      label: "B",
+      name: "B 面",
+      tracks: [
+        { title: "末法劫",         file: "末法劫_2025101092315.mp3",       dur: "2:59" },
+        { title: "倾城艳骨",       file: "倾城艳骨_2025101092320.mp3",     dur: "2:59" },
+        { title: "入无生",         file: "入无生_2025101092325.mp3",       dur: "2:59" },
+        { title: "诗心自在",       file: "诗心自在_2025101092330.mp3",     dur: "1:59" },
+        { title: "铁围山下业火红", file: "铁围山下业火红_20251012133437.mp3", dur: "2:59" },
+        { title: "无生",           file: "无生_2025101092333.mp3",         dur: "2:53" },
+        { title: "悟无生",         file: "悟无生_2025101092337.mp3",       dur: "2:59" },
+        { title: "艳骨",           file: "艳骨_2025101092342.mp3",         dur: "2:57" },
+        { title: "阴阳交融",       file: "阴阳交融_2025101092345.mp3",     dur: "2:00" },
+        { title: "月照浮世悲",     file: "月照浮世悲_2025101092348.mp3",   dur: "2:51" }
+      ]
+    },
+   {
+      label: "C",
+      name: "C 面 （更新中）",
+      tracks: [
+        { title: "尘缘",       file: "尘缘.m4a",         dur: "3:23" }
+      ]
+    }
+  ]
+};
+
+/* ---------- 工具 ---------- */
+function durToSec(d){ var p=d.split(":"); return (+p[0])*60 + (+p[1]); }
+function secToDur(s){ var m=Math.floor(s/60), x=s%60; return m + ":" + (x<10?"0":"") + x; }
+function fmt(s){ return secToDur(Math.floor(s)); }
+function flatTracks(){
+  var list=[];
+  ALBUM.sides.forEach(function(side){
+    side.tracks.forEach(function(t){ list.push(t); });
+  });
+  return list;
+}
+var TRACKS = flatTracks();
+function sideTotal(side){
+  var s=0; side.tracks.forEach(function(t){ s+=durToSec(t.dur); }); return secToDur(s);
+}
+function grandTotal(){
+  var s=0; TRACKS.forEach(function(t){ s+=durToSec(t.dur); }); return secToDur(s);
+}
+function trackSrc(i){ return "music/" + encodeURIComponent(TRACKS[i].file); }
+
+/* ---------- 状态 & 音频 ---------- */
+var state = { playing:false, current:-1 };
+var audio = new Audio();
+audio.preload = "metadata";
+
+/* ---------- DOM ---------- */
+var $ = function(id){ return document.getElementById(id); };
+var elBtnPlay = $("btn-play"),
+    elBtnIcon = $("btn-icon"), elBtnLabel = $("btn-label"), elBtnPause = $("btn-pause"),
+    elEq = $("eq-bars"), elNp = $("np-text"), elRecord = $("record"),
+    elFill = $("progress-fill"), elDot = $("progress-dot"),
+    elCur = $("time-cur"), elTotal = $("time-total");
+
+/* ---------- 渲染 ---------- */
+function renderHero(){
+  $("hero-title").textContent = ALBUM.title;
+  $("label-title").textContent = ALBUM.title;
+  $("sleeve-title").textContent = ALBUM.title;
+  $("hero-artist").textContent = ALBUM.artist;
+  $("label-artist").textContent = ALBUM.artist;
+  $("sleeve-artist").textContent = ALBUM.artist;
+  $("label-brand").textContent = ALBUM.catalog;
+  $("hero-eyebrow").textContent = "A " + ALBUM.rpm + " RPM · 立体声唱片 · " + ALBUM.catalog;
+  $("cover-img").src = ALBUM.cover;
+  $("cover-img").alt = "《" + ALBUM.title + "》专辑封面";
+  $("hero-meta").textContent = ALBUM.year + " · " + ALBUM.genre + " · " + TRACKS.length + " 首 · " + grandTotal();
+  $("hero-desc").textContent = ALBUM.desc;
+  $("side-sub").textContent = "两面 · " + TRACKS.length + " 首 · 共 " + grandTotal();
+  $("footer-meta").textContent = "© " + ALBUM.year + " " + ALBUM.title + " · " + ALBUM.genre + " · 复古黑胶主题";
+  document.title = ALBUM.title + " · " + ALBUM.genre + " | 复古黑胶唱片";
+}
+
+function renderNotes(){
+  var html = "";
+  ALBUM.notes.forEach(function(p){ html += "<p>" + p + "</p>"; });
+  html += '<span class="sign">—— ' + ALBUM.artist + '</span>';
+  $("notes-body").innerHTML = html;
+}
+
+function trackSideLabel(i){
+  var t = TRACKS[i], idx = 0, sideLabel = "A";
+  ALBUM.sides.forEach(function(side){
+    var j = side.tracks.indexOf(t);
+    if(j >= 0){ idx = j; sideLabel = side.label; }
+  });
+  return sideLabel + "面 · 第" + (idx+1) + "轨";
+}
+
+function renderSides(){
+  var wrap = $("sides"), html = "";
+  ALBUM.sides.forEach(function(side){
+    html += '<div class="side">';
+    html += '<div class="side-head">';
+    html += '<span class="side-badge">' + side.label + '</span>';
+    html += '<div><div class="side-name">' + side.name + '</div>';
+    html += '<div class="side-total">SIDE ' + side.label + " · " + sideTotal(side) + '</div></div>';
+    html += '</div>';
+    html += '<ol class="tracks">';
+    side.tracks.forEach(function(t,idx){
+      var gi = TRACKS.indexOf(t);
+      html += '<li class="track" data-i="' + gi + '" tabindex="0" role="button" aria-label="播放 ' + t.title + '">';
+      html += '<span class="t-no">' + ("0"+ (gi+1)).slice(-2) + '</span>';
+      html += '<span class="t-title">' + t.title + '</span>';
+      html += '<span class="t-dur">' + t.dur + '</span>';
+      html += '<span class="t-eq eq" aria-hidden="true"><i></i><i></i><i></i></span>';
+      html += '</li>';
+    });
+    html += '</ol></div>';
+  });
+  wrap.innerHTML = html;
+}
+
+function renderState(){
+  elRecord.style.animationDuration = state.playing ? "7s" : "16s";
+  elBtnLabel.textContent = state.playing ? "暂停播放" : "播放全部";
+  elBtnIcon.innerHTML = state.playing
+    ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>'
+    : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>';
+  elBtnPause.style.display = state.playing ? "inline-block" : "none";
+
+  if(state.current >= 0){
+    var t = TRACKS[state.current];
+    elEq.classList.add("is-playing");
+    elNp.textContent = state.playing
+      ? "正在播放 · " + t.title + "（" + trackSideLabel(state.current) + "）"
+      : "已暂停 · " + t.title + "（" + trackSideLabel(state.current) + "）";
+  } else {
+    elEq.classList.remove("is-playing");
+    elNp.textContent = "尚未播放 · 点击任意曲目开始试听";
+  }
+
+  var rows = document.querySelectorAll(".track");
+  rows.forEach(function(row){
+    var i = +row.getAttribute("data-i");
+    var on = i === state.current;
+    row.classList.toggle("is-active", on);
+    row.querySelector(".t-eq").classList.toggle("is-playing", on && state.playing);
+  });
+}
+
+function updateProgress(){
+  var d = audio.duration;
+  if(!isFinite(d) || d <= 0){
+    elTotal.textContent = (state.current>=0 && TRACKS[state.current]) ? TRACKS[state.current].dur : "--:--";
+    elCur.textContent = "0:00";
+    elFill.style.width = "0%"; elDot.style.left = "0%";
+    return;
+  }
+  elTotal.textContent = fmt(d);
+  elCur.textContent = fmt(audio.currentTime);
+  var pct = (audio.currentTime / d) * 100;
+  elFill.style.width = pct + "%";
+  elDot.style.left = pct + "%";
+  var pr = $("progress");
+  pr.setAttribute("aria-valuenow", Math.round(pct));
+}
+
+/* ---------- 播放控制 ---------- */
+function playIndex(i){
+  if(state.current === i){
+    if(audio.paused){ audio.play(); } else { audio.pause(); }
+    return;
+  }
+  state.current = i;
+  audio.src = trackSrc(i);
+  audio.currentTime = 0;
+  var p = audio.play();
+  if(p && p.catch){ p.catch(function(){ elNp.textContent = "无法播放 · 请检查 music 文件夹中的音频文件"; }); }
+  renderState();
+  updateProgress();
+}
+function togglePlay(){
+  if(state.current < 0){ playIndex(0); return; }
+  if(audio.paused){ audio.play(); } else { audio.pause(); }
+}
+function nextTrack(){
+  if(state.current < 0){ playIndex(0); return; }
+  var n = (state.current + 1) % TRACKS.length;
+  playIndex(n);
+}
+
+audio.addEventListener("play", function(){ state.playing = true; renderState(); });
+audio.addEventListener("pause", function(){ state.playing = false; renderState(); });
+audio.addEventListener("ended", nextTrack);
+audio.addEventListener("timeupdate", updateProgress);
+audio.addEventListener("loadedmetadata", updateProgress);
+audio.addEventListener("error", function(){
+  if(state.current >= 0){ elNp.textContent = "无法播放 · 请检查 music 文件夹中的音频文件"; }
+});
+
+/* 进度条：点击/键盘 seek */
+var elProgress = $("progress");
+elProgress.addEventListener("click", function(e){
+  if(!audio.duration || !isFinite(audio.duration)) return;
+  var rect = elProgress.getBoundingClientRect();
+  var ratio = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = ratio * audio.duration;
+  updateProgress();
+});
+elProgress.addEventListener("keydown", function(e){
+  if(!audio.duration || !isFinite(audio.duration)) return;
+  if(e.key === "ArrowRight" || e.key === "ArrowLeft"){
+    e.preventDefault();
+    var step = (e.key === "ArrowRight" ? 5 : -5);
+    audio.currentTime = Math.max(0, Math.min(audio.duration, audio.currentTime + step));
+    updateProgress();
+  }
+});
+
+elBtnPlay.addEventListener("click", togglePlay);
+elBtnPause.addEventListener("click", togglePlay);
+$("sides").addEventListener("click", function(e){
+  var row = e.target.closest(".track");
+  if(row){ playIndex(+row.getAttribute("data-i")); }
+});
+$("sides").addEventListener("keydown", function(e){
+  if(e.key === "Enter" || e.key === " "){
+    var row = e.target.closest(".track");
+    if(row){ e.preventDefault(); playIndex(+row.getAttribute("data-i")); }
+  }
+});
+
+/* ---------- 滚动显现 ---------- */
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){ en.target.classList.add("is-in"); io.unobserve(en.target); }
+  });
+},{ threshold:.12 });
+document.querySelectorAll("[data-reveal]").forEach(function(el){ io.observe(el); });
+
+/* ---------- 初始化 ---------- */
+renderHero();
+renderNotes();
+renderSides();
+renderState();
+updateProgress();
+</script>
+</body>
+</html>
