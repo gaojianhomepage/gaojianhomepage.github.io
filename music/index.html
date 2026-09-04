@@ -171,6 +171,17 @@ h1,h2,h3,p,ol,ul,figure{margin:0;padding:0;}
 }
 .btn-tiny:hover{opacity:1;color:var(--amber);}
 
+/* 播放模式切换 */
+.btn-mode{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--display);font-size:13px;letter-spacing:.1em;color:var(--paper);
+  border:1px solid var(--line-dark);border-radius:999px;padding:9px 16px;
+  transition:border-color .2s,color .2s,background .2s;
+}
+.btn-mode:hover{border-color:var(--amber);color:var(--amber);background:rgba(216,163,62,.08);}
+.btn-mode .mode-icon{width:16px;height:16px;flex:none;display:grid;place-items:center;}
+.btn-mode .mode-icon svg{width:100%;height:100%;display:block;}
+
 /* 播放器 */
 .player{max-width:460px;margin-bottom:22px;}
 .progress{
@@ -341,6 +352,10 @@ h1,h2,h3,p,ol,ul,figure{margin:0;padding:0;}
           <span id="btn-label">播放全部</span>
         </button>
         <button class="btn-tiny" id="btn-pause" type="button" style="display:none;">暂停试听</button>
+        <button class="btn-mode" id="btn-mode" type="button" title="切换播放模式">
+          <span class="mode-icon" id="mode-icon"></span>
+          <span class="mode-label" id="mode-label">列表循环</span>
+        </button>
       </div>
       <div class="player" aria-label="播放进度">
         <div class="progress" id="progress" role="slider" aria-label="播放进度" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
@@ -480,8 +495,16 @@ function grandTotal(){
 }
 function trackSrc(i){ return "music/" + encodeURIComponent(TRACKS[i].file); }
 
+/* ---------- 播放模式 ---------- */
+var MODES = [
+  { key:"loop",    label:"列表循环", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>' },
+  { key:"single",  label:"单曲循环", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/><text x="12" y="15.5" text-anchor="middle" font-size="10" font-family="Arial, sans-serif" font-weight="600" fill="currentColor" stroke="none">1</text></svg>' },
+  { key:"shuffle", label:"随机播放", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>' },
+  { key:"order",   label:"顺序播放", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg>' }
+];
+
 /* ---------- 状态 & 音频 ---------- */
-var state = { playing:false, current:-1 };
+var state = { playing:false, current:-1, mode:0 };
 var audio = new Audio();
 audio.preload = "metadata";
 
@@ -615,9 +638,30 @@ function togglePlay(){
   if(state.current < 0){ playIndex(0); return; }
   if(audio.paused){ audio.play(); } else { audio.pause(); }
 }
+function renderMode(){
+  var m = MODES[state.mode];
+  $("mode-icon").innerHTML = m.icon;
+  $("mode-label").textContent = m.label;
+  $("btn-mode").setAttribute("title", "当前模式：" + m.label + " · 点击切换");
+}
+function pickNext(){
+  var mode = MODES[state.mode].key;
+  if(mode === "single") return state.current;                       // 单曲循环 → 重播当前
+  if(mode === "shuffle"){                                           // 随机播放
+    if(TRACKS.length <= 1) return state.current;
+    var n;
+    do { n = Math.floor(Math.random() * TRACKS.length); } while(n === state.current);
+    return n;
+  }
+  var n = (state.current + 1) % TRACKS.length;                      // 顺序 / 列表循环
+  if(mode === "order" && state.current === TRACKS.length - 1) return -1; // 顺序播到末尾 → 停止
+  return n;
+}
 function nextTrack(){
   if(state.current < 0){ playIndex(0); return; }
-  var n = (state.current + 1) % TRACKS.length;
+  var n = pickNext();
+  if(n < 0){ audio.pause(); renderState(); return; }                // 顺序播放播到末尾 → 停止
+  if(n === state.current){ audio.currentTime = 0; audio.play(); return; } // 单曲循环
   playIndex(n);
 }
 
@@ -651,6 +695,10 @@ elProgress.addEventListener("keydown", function(e){
 
 elBtnPlay.addEventListener("click", togglePlay);
 elBtnPause.addEventListener("click", togglePlay);
+$("btn-mode").addEventListener("click", function(){
+  state.mode = (state.mode + 1) % MODES.length;
+  renderMode();
+});
 $("sides").addEventListener("click", function(e){
   var row = e.target.closest(".track");
   if(row){ playIndex(+row.getAttribute("data-i")); }
@@ -675,6 +723,7 @@ renderHero();
 renderNotes();
 renderSides();
 renderState();
+renderMode();
 updateProgress();
 </script>
 </body>
