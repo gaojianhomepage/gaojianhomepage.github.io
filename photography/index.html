@@ -244,6 +244,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
+            cursor: zoom-in;
         }
         
         .gallery-item:hover img {
@@ -361,6 +362,106 @@
             font-size: 0.9rem;
         }
         
+        /* 灯箱（点击图片放大查看）样式 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: zoom-out;
+        }
+        
+        .lightbox.show {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 92%;
+            max-height: 82vh;
+            border-radius: 6px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            object-fit: contain;
+            animation: lightboxZoom 0.3s ease;
+            cursor: default;
+        }
+        
+        @keyframes lightboxZoom {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .lightbox-caption {
+            color: #ccc;
+            margin-top: 16px;
+            font-size: 1rem;
+            text-align: center;
+            padding: 0 40px;
+            max-width: 92%;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 2.6rem;
+            font-weight: 300;
+            line-height: 1;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.3s;
+            z-index: 10000;
+            user-select: none;
+        }
+        
+        .lightbox-close:hover {
+            color: #4cc9f0;
+            transform: rotate(90deg);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+            z-index: 10000;
+        }
+        
+        .lightbox-nav:hover {
+            background: #4361ee;
+        }
+        
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+            .lightbox-close { right: 20px; top: 15px; }
+        }
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             .header-content {
@@ -467,6 +568,20 @@
     <section id="gallery" class="gallery">
         <div class="container">
             <div class="gallery-grid">
+
+                <!-- 图片1 -->
+                <div class="gallery-item">
+                    <img src="images/8.jpg" alt="天池风光">
+                    <div class="item-info">
+                        <h4>天池风光</h4>
+                        <p>乌鲁木齐 | 2026年</p>
+                    </div>
+                </div>
+
+
+
+
+
                 <!-- 图片1 -->
                 <div class="gallery-item">
                     <img src="images/1.jpg" alt="山脉风光">
@@ -582,6 +697,15 @@
         </div>
     </footer>
 
+    <!-- 图片放大查看灯箱 -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-label="图片放大查看">
+        <span class="lightbox-close" id="lightbox-close" title="关闭">&times;</span>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" title="上一张">&#10094;</button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" title="下一张">&#10095;</button>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="放大图片">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
     <script>
         // 简单的分类过滤功能
         document.addEventListener('DOMContentLoaded', function() {
@@ -611,6 +735,67 @@
                         });
                     }
                 });
+            });
+            
+            // 点击图片放大查看（灯箱）
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
+            let currentIndex = 0;
+            
+            function showLightbox(index) {
+                currentIndex = index;
+                const img = galleryImages[currentIndex];
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt || '放大图片';
+                const info = img.closest('.gallery-item').querySelector('.item-info');
+                lightboxCaption.textContent = info ? info.textContent.replace(/\s+/g, ' ').trim() : '';
+                lightbox.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function hideLightbox() {
+                lightbox.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+            
+            galleryImages.forEach((img, index) => {
+                img.addEventListener('click', function() {
+                    showLightbox(index);
+                });
+            });
+            
+            lightboxClose.addEventListener('click', hideLightbox);
+            
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    hideLightbox();
+                }
+            });
+            
+            lightboxPrev.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showLightbox((currentIndex - 1 + galleryImages.length) % galleryImages.length);
+            });
+            
+            lightboxNext.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showLightbox((currentIndex + 1) % galleryImages.length);
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('show')) return;
+                if (e.key === 'Escape') {
+                    hideLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    showLightbox((currentIndex - 1 + galleryImages.length) % galleryImages.length);
+                } else if (e.key === 'ArrowRight') {
+                    showLightbox((currentIndex + 1) % galleryImages.length);
+                }
             });
         });
     </script>
